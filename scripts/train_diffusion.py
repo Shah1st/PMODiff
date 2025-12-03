@@ -135,6 +135,8 @@ if __name__ == '__main__':
             )
             loss, loss_pos, loss_v, energy = results['loss'], results['loss_pos'], results['loss_v'], results['energy']
             loss_compact = results.get('loss_compact', torch.tensor(0.0, device=loss.device))
+            loss_spp = results.get('loss_spp', torch.tensor(0.0, device=loss.device))
+
             loss = loss / config.train.n_acc_batch
             energy_loss = energy * (it/500000)*0.1
             total_loss = loss + energy_loss
@@ -144,8 +146,8 @@ if __name__ == '__main__':
 
         if it % args.train_report_iter == 0:
             logger.info(
-                '[Train] Iter %05d | Loss %.6f | Loss pos %.6f | Loss v %.6f | Compact %.6f | Energy %.6f | Grad %.4f | LR %.6f' % (
-                    it, loss.item(), loss_pos.item(), loss_v.item(), loss_compact.item(), energy.item(), orig_grad_norm, optimizer.param_groups[0]['lr']
+                '[Train] Iter %05d | Loss %.6f | Loss pos %.6f | Loss v %.6f | Compact %.6f | SPP %.6f | Energy %.6f | Grad %.4f | LR %.6f' % (
+                    it, loss.item(), loss_pos.item(), loss_v.item(), loss_compact.item(), loss_spp.item(), energy.item(), orig_grad_norm, optimizer.param_groups[0]['lr']
                 )
             )
             for k, v in results.items():
@@ -157,16 +159,17 @@ if __name__ == '__main__':
             writer.add_scalar('Training/Position Loss', loss_pos, it)
             writer.add_scalar('Training/Type Loss', loss_v, it)
             writer.add_scalar('Training/Compactness Loss', loss_compact, it)
+            writer.add_scalar('Training/SPP Loss', loss_spp, it)
             writer.add_scalar('Training/Energy', energy, it)
             writer.add_scalar('Learning Rate', optimizer.param_groups[0]['lr'], it)
             writer.add_scalar('Gradient Norm', orig_grad_norm, it)
             writer.flush()
 
-
     def validate(it):
         # fix time steps
         sum_loss, sum_loss_pos, sum_loss_v, sum_energy, sum_n = 0, 0, 0, 0, 0
         sum_loss_compact = 0
+        sum_loss_spp = 0
         sum_loss_bond, sum_loss_non_bond = 0, 0
         all_pred_v, all_true_v = [], []
         all_pred_bond_type, all_gt_bond_type = [], []
@@ -192,6 +195,7 @@ if __name__ == '__main__':
                     loss, loss_pos, loss_v, energy = results['loss'], results['loss_pos'], results['loss_v'],  results['energy']
 
                     loss_compact = results.get('loss_compact', torch.tensor(0.0))
+                    loss_spp = results.get('loss_spp', torch.tensor(0.0))
 
                     energy_loss = energy
                     sum_energy += float(energy_loss) * batch_size
@@ -200,6 +204,7 @@ if __name__ == '__main__':
                     sum_loss_pos += float(loss_pos) * batch_size
                     sum_loss_v += float(loss_v) * batch_size
                     sum_loss_compact += float(loss_compact) * batch_size
+                    sum_loss_spp += float(loss_spp) * batch_size
                     sum_n += batch_size
                     all_pred_v.append(results['ligand_v_recon'].detach().cpu().numpy())
                     all_true_v.append(batch.ligand_atom_feature_full.detach().cpu().numpy())
@@ -208,6 +213,7 @@ if __name__ == '__main__':
         avg_loss_pos = sum_loss_pos / sum_n
         avg_loss_v = sum_loss_v / sum_n
         avg_loss_compact = sum_loss_compact / sum_n
+        avg_loss_spp = sum_loss_spp / sum_n
         
         avg_energy = sum_energy / sum_n
         
@@ -222,21 +228,17 @@ if __name__ == '__main__':
             scheduler.step()
 
         logger.info(
-            '[Validate] Iter %05d | Loss %.6f | Loss pos %.6f | Loss v %.6f e-3 | Avg atom auroc %.6f | Compact %.6f' % (
-                it, avg_loss, avg_loss_pos, avg_loss_v * 1000, atom_auroc, avg_loss_compact
+            '[Validate] Iter %05d | Loss %.6f | Loss pos %.6f | Loss v %.6f e-3 | Avg atom auroc %.6f | Compact %.6f | SPP %.6f' % (
+                it, avg_loss, avg_loss_pos, avg_loss_v * 1000, atom_auroc, avg_loss_compact, avg_loss_spp
             )
         )
         writer.add_scalar('val/loss', avg_loss, it)
         writer.add_scalar('val/loss_pos', avg_loss_pos, it)
         writer.add_scalar('val/loss_v', avg_loss_v, it)
+        writer.add_scalar('val/loss_spp', avg_loss_spp, it)
         writer.add_scalar('Validation/Total Loss', avg_loss, it)
         writer.add_scalar('Validation/Position Loss', avg_loss_pos, it)
         writer.add_scalar('Validation/Type Loss', avg_loss_v, it)
-        writer.add_scalar('Validation/Compactness Loss', avg_loss_compact, it)
-        writer.add_scalar('Validation/Energy Loss', avg_energy, it)
-        writer.flush()
-        return avg_loss
-
 
     try:
         best_loss, best_iter = None, None
