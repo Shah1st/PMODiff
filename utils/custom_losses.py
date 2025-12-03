@@ -1,6 +1,8 @@
 import torch
 import torch.nn as nn
-from typing import Optional, Dict
+import json
+from pathlib import Path
+from typing import Optional, Dict, Literal
 
 ATOMIC_MASSES: Dict[int, float] = {
     1: 1.008,    # H
@@ -256,4 +258,107 @@ class MassWeightedCompactnessLoss(nn.Module):
                 rg_squared = scatter_add(masses * sq_dist, batch_idx, dim=0, dim_size=num_graphs)
                 rg_squared = rg_squared / total_mass.clamp(min=1e-8)
                 
+
                 return torch.sqrt(rg_squared.clamp(min=1e-8))
+
+
+class StatisticalProxyPotentialLoss:
+    def __init__(self,
+                 atom_mapping: dict = None,
+                 r_min: float = 0.0,
+                 r_max: float = 15.0,
+                 r_n_bins: int = 1000,
+                 spp_path: str | Path = "./potentials.json",
+                 spp_key: Literal["spp", "spp_norm"] = "spp",
+                 lj_min: float = -1.0,
+                 lj_max: float = 1e3):
+        self.atom_mapping = atom_mapping if atom_mapping is not None else {1: "H", 6: "C", 7: "N", 8: "O"}
+        path = Path(spp_path)
+        with path.open("r", encoding="utf-8") as f:
+            spp_values = json.load(f)
+
+        self.spp_dict = {}
+        for pair in spp_values:
+            self.spp_dict[pair] = torch.tensor(spp_values[pair][spp_key], dtype=torch.float32)
+
+        self.r = torch.linspace(r_min, r_max, r_n_bins)
+        self.lj_min = lj_min
+        self.lj_max = lj_max
+
+
+    def _interp1d_vectorized(self, x, xp, fp):
+        idx = torch.searchsorted(xp, x).clamp(1, xp.numel() - 1)
+        x0, x1 = xp[idx-1], xp[idx]
+        y0, y1 = fp[idx-1], fp[idx]
+        t = (x - x0) / (x1 - x0 + 1e-12)
+        return y0 + t * (y1 - y0)
+
+
+    def _spp_loss(self, all_coords, R_t, spp_dict):
+        atoms = sorted(all_coords.keys())
+        total_energy = torch.tensor(0.0, dtype=torch.float32, requires_grad=True)
+        pair_count = 0
+
+        coord_tensors = {}
+        for atom in atoms:
+            c = all_coords[atom]
+            if isinstance(c, torch.Tensor):
+                coord_tensors[atom] = c
+            else:
+                coord_tensors[atom] = torch.tensor(c, dtype=torch.float32, requires_grad=True)
+
+        for i in range(len(atoms)):
+            for j in range(i+1, len(atoms)):
+                a1, a2 = atoms[i], atoms[j]
+                key = f"{a1}-{a2}"         # spp_dict "atom1-atom2", where atom1 < atom2
+                A = coord_tensors[a1]      # (N1, 3)
+                B = coord_tensors[a2]      # (N2, 3)
+
+                # Vectorized distances
+                diff = A[:, None, :] - B[None, :, :]
+                dist = torch.sqrt((diff**2).sum(-1) + 1e-12)
+
+                if key in spp_dict:
+                    # Vectorized interpolation
+                    U_curve = spp_dict[key]
+                    U = self._interp1d_vectorized(dist, R_t, U_curve)
+                    total_energy = total_energy + U.sum()
+                else:
+                    # Lennard-Jones potential as fallback
+                    total_energy = total_energy + torch.clip((4 / (dist**12) - 4 / (dist**6)).sum(), min=self.lj_min, max=self.lj_max)
+                pair_count += dist.numel()
+
+        return total_energy / (pair_count + 1e-12)
+    
+
+    def forward(
+        self,
+        coords: torch.Tensor,
+        atom_types: torch.Tensor
+    ) -> torch.Tensor:
+        """
+        Compute mass-weighted compactness loss.
+        
+        Args:
+            coords: (B, N, 3) batched or (N_total, 3) scattered
+            atom_types: (B, N) or (N_total,) atomic numbers
+        """
+        total_loss = torch.tensor(0.0, dtype=torch.float32, requires_grad=True)
+        b, n = atom_types.shape if len(atom_types.shape) == 2 else (1, atom_types.shape[0])
+        for i in range(b):
+            all_coords = {}
+            for j in range(n):
+                atom_int = atom_types[i][j].item() if len(atom_types.shape) == 2 else atom_types[i].item()
+                if atom_int == 0:
+                    break
+
+                atom_type = self.atom_mapping.get(atom_int, str(atom_int))
+                if atom_type not in all_coords:
+                    all_coords[atom_type] = []
+                all_coords[atom_type].append(coords[i][j] if len(coords.shape) == 3 else coords[i])
+
+            for atom in all_coords:
+                all_coords[atom] = torch.stack(all_coords[atom], dim=0)
+
+            total_loss = total_loss + self._spp_loss(all_coords, self.r, self.spp_dict)
+        return total_loss / b
