@@ -10,6 +10,9 @@ from models.egnn import EGNN
 from models.uni_transformer import UniTransformerO2TwoUpdateGeneral
 from datasets.protein_ligand import KMAP
 
+from utils.custom_losses import MassWeightedCompactnessLoss
+from utils.transforms import MAP_INDEX_TO_ATOM_TYPE_AROMATIC
+
 VDWRADII = {
     1: 1.1,
     6: 1.90,
@@ -330,6 +333,23 @@ class ScorePosNet3D(nn.Module):
             nn.Linear(self.hidden_dim, ligand_atom_feature_dim),
         )
 
+         self.compactness_loss = MassWeightedCompactnessLoss(
+            anisotropy_weight=0.1,
+            timestep_schedule="cosine"
+        )
+        self.compactness_weight = 0.1 
+        self.register_buffer('index_to_atomic_number', self._create_atom_lookup())
+
+    def _create_atom_lookup(self):
+        # Determine size based on the largest index in the map
+        max_idx = max(MAP_INDEX_TO_ATOM_TYPE_AROMATIC.keys())
+        lookup = torch.zeros(max_idx + 1, dtype=torch.long)
+        
+        for idx, (atomic_num, is_aromatic) in MAP_INDEX_TO_ATOM_TYPE_AROMATIC.items():
+            lookup[idx] = atomic_num
+            
+        return lookup
+
     def forward(self, protein_pos, protein_v, batch_protein, init_ligand_pos, init_ligand_v, batch_ligand,
                 time_step=None, return_all=False, fix_x=False, guide=None):
         """_summary_
@@ -605,7 +625,21 @@ class ScorePosNet3D(nn.Module):
         kl_v = self.compute_v_Lt(log_v_model_prob=log_v_model_prob, log_v0=log_ligand_v0,
                                  log_v_true_prob=log_v_true_prob, t=time_step, batch=batch_ligand)
         loss_v = torch.mean(kl_v)
-        loss = loss_pos + loss_v * self.loss_v_weight
+
+        # Convert indices to atomic numbers
+        atom_numbers = self.index_to_atomic_number[ligand_v.long()]
+        
+        # Compute loss
+        loss_compact = self.compactness_loss(
+            coords=pred_ligand_pos, 
+            atom_types=atom_numbers,
+            batch_idx=batch_ligand,
+            timestep=time_step
+        )
+        
+        # Add to total
+        loss = loss_pos + loss_v * self.loss_v_weight + loss_compact * self.compactness_weight
+        
         
         # For Physics informed ML
         if train == True:
@@ -654,6 +688,7 @@ class ScorePosNet3D(nn.Module):
         return {
             'loss_pos': loss_pos,
             'loss_v': loss_v,
+            'loss_compact': loss_compact,
             'loss': loss,
             'x0': ligand_pos,
             'pred_ligand_pos': pred_ligand_pos,
