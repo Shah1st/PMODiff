@@ -357,7 +357,7 @@ class ScorePosNet3D(nn.Module):
         # Initialize StatisticalProxyPotentialLoss with correct mapping
         self.spp_loss = StatisticalProxyPotentialLoss(
             atom_mapping=ATOM_MAPPING_SPP,
-            spp_path="./potentials.json"
+            spp_path="./utils/potentials.json"
         )
         self.spp_weight = getattr(config, 'spp_weight', 0.1)
 
