@@ -10,7 +10,7 @@ from models.egnn import EGNN
 from models.uni_transformer import UniTransformerO2TwoUpdateGeneral
 from datasets.protein_ligand import KMAP
 
-from utils.custom_losses import MassWeightedCompactnessLoss
+from utils.custom_losses import MassWeightedCompactnessLoss, StatisticalProxyPotentialLoss
 from utils.transforms import MAP_INDEX_TO_ATOM_TYPE_AROMATIC
 
 VDWRADII = {
@@ -33,6 +33,21 @@ VDWRADII = {
     20: 1.2,
     29: 1.2,
 }
+
+# Mapping for StatisticalProxyPotentialLoss (Atomic Number -> Symbol)
+ATOM_MAPPING_SPP = {
+    1: "H",
+    6: "C",
+    7: "N",
+    8: "O",
+    9: "F",
+    15: "P",
+    16: "S",
+    17: "Cl",
+    35: "Br",
+    53: "I"
+}
+
 def get_refine_net(refine_net_type, config):
     if refine_net_type == 'uni_o2':
         refine_net = UniTransformerO2TwoUpdateGeneral(
@@ -333,11 +348,19 @@ class ScorePosNet3D(nn.Module):
             nn.Linear(self.hidden_dim, ligand_atom_feature_dim),
         )
 
-         self.compactness_loss = MassWeightedCompactnessLoss(
+        self.compactness_loss = MassWeightedCompactnessLoss(
             anisotropy_weight=0.1,
             timestep_schedule="cosine"
         )
-        self.compactness_weight = 0.1 
+        self.compactness_weight = 0.1
+        
+        # Initialize StatisticalProxyPotentialLoss with correct mapping
+        self.spp_loss = StatisticalProxyPotentialLoss(
+            atom_mapping=ATOM_MAPPING_SPP,
+            spp_path="./potentials.json"
+        )
+        self.spp_weight = getattr(config, 'spp_weight', 0.1)
+
         self.register_buffer('index_to_atomic_number', self._create_atom_lookup())
 
     def _create_atom_lookup(self):
@@ -626,19 +649,37 @@ class ScorePosNet3D(nn.Module):
                                  log_v_true_prob=log_v_true_prob, t=time_step, batch=batch_ligand)
         loss_v = torch.mean(kl_v)
 
-        # Convert indices to atomic numbers
+        # Convert indices to atomic numbers (Real physical numbers: 1=H, 6=C, etc.)
+        # This is critical for spp loss which expects 0 to be "empty"
         atom_numbers = self.index_to_atomic_number[ligand_v.long()]
         
-        # Compute loss
+        # Compute compactness loss
         loss_compact = self.compactness_loss(
             coords=pred_ligand_pos, 
             atom_types=atom_numbers,
             batch_idx=batch_ligand,
             timestep=time_step
         )
+
+        # SPP Loss Calculation
+        loss_spp = torch.tensor(0.0, device=protein_pos.device)
+        if self.spp_weight > 0:
+            total_spp = 0
+            # Iterate over each molecule in the batch
+            for i in range(num_graphs):
+                mask = (batch_ligand == i)
+                mol_pos = pred_ligand_pos[mask]
+                
+                # Pass real atomic numbers (e.g., 1, 6, 8)
+                # Since 1=H, 0 is not used for valid atoms, so Artur's "0=skip" check works correctly.
+                mol_atoms = atom_numbers[mask]
+                
+                total_spp += self.spp_loss(mol_pos, mol_atoms)
+            
+            loss_spp = total_spp / num_graphs
         
         # Add to total
-        loss = loss_pos + loss_v * self.loss_v_weight + loss_compact * self.compactness_weight
+        loss = loss_pos + loss_v * self.loss_v_weight + loss_compact * self.compactness_weight + loss_spp * self.spp_weight
         
         
         # For Physics informed ML
@@ -689,6 +730,7 @@ class ScorePosNet3D(nn.Module):
             'loss_pos': loss_pos,
             'loss_v': loss_v,
             'loss_compact': loss_compact,
+            'loss_spp': loss_spp,
             'loss': loss,
             'x0': ligand_pos,
             'pred_ligand_pos': pred_ligand_pos,
