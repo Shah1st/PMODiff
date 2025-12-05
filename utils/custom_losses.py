@@ -74,8 +74,8 @@ class MassWeightedCompactnessLoss(nn.Module):
         """Convert atomic numbers to masses."""
         clamped = atom_types.clamp(0, len(self.mass_lookup) - 1)
         masses = self.mass_lookup[clamped]
-        
         out_of_range = (atom_types >= len(self.mass_lookup)) | (atom_types < 0)
+
         if out_of_range.any():
             masses = masses.clone()
             masses[out_of_range] = self.default_mass
@@ -257,9 +257,10 @@ class MassWeightedCompactnessLoss(nn.Module):
                 sq_dist = (centered ** 2).sum(dim=-1)
                 rg_squared = scatter_add(masses * sq_dist, batch_idx, dim=0, dim_size=num_graphs)
                 rg_squared = rg_squared / total_mass.clamp(min=1e-8)
-                
-
-                return torch.sqrt(rg_squared.clamp(min=1e-8))
+               
+                MIN_RG = 0.5
+                return torch.sqrt(rg_squared.clamp(min=MIN_RG**2))
+                #return torch.sqrt(rg_squared.clamp(min=1e-8))
 
 
 class StatisticalProxyPotentialLoss:
@@ -268,7 +269,7 @@ class StatisticalProxyPotentialLoss:
                  r_min: float = 0.0,
                  r_max: float = 15.0,
                  r_n_bins: int = 1000,
-                 spp_path: str | Path = "./potentials.json",
+                 spp_path: str = "./potentials.json",
                  spp_key: Literal["spp", "spp_norm"] = "spp",
                  lj_min: float = -1.0,
                  lj_max: float = 1e3):

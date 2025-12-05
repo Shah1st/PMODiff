@@ -242,6 +242,8 @@ class ScorePosNet3D(nn.Module):
         # variance schedule
         self.model_mean_type = config.model_mean_type  # ['noise', 'C0']
         self.loss_v_weight = config.loss_v_weight
+        self.spp_weight = config.spp_weight
+        self.compactness_weight = config.compactness_weight
         # self.v_mode = config.v_mode
         # assert self.v_mode == 'categorical'
         # self.v_net_type = getattr(config, 'v_net_type', 'mlp')
@@ -352,14 +354,14 @@ class ScorePosNet3D(nn.Module):
             anisotropy_weight=0.1,
             timestep_schedule="cosine"
         )
-        self.compactness_weight = 0.1
+        #self.compactness_weight = config.model.compactenss_weight #0.1
         
         # Initialize StatisticalProxyPotentialLoss with correct mapping
         self.spp_loss = StatisticalProxyPotentialLoss(
             atom_mapping=ATOM_MAPPING_SPP,
             spp_path="./utils/potentials.json"
         )
-        self.spp_weight = getattr(config, 'spp_weight', 0.1)
+        #self.spp_weight = getattr(config, 'spp_weight', 0.1)
 
         self.register_buffer('index_to_atomic_number', self._create_atom_lookup())
 
@@ -687,7 +689,8 @@ class ScorePosNet3D(nn.Module):
             dm_min = 0.5
             total_energy = 0
             for batch_idx in range(num_graphs):
-                ligand_coor = pred[batch_ligand==batch_idx]
+                #ligand_coor = pred[batch_ligand==batch_idx]
+                ligand_coor = pred_ligand_pos[batch_ligand==batch_idx]
                 protein_coor = protein_pos[batch_protein==batch_idx]
                 p1_repeat = ligand_coor.unsqueeze(1).repeat(1, protein_coor.size(0), 1)
                 p2_repeat = protein_coor.unsqueeze(0).repeat(ligand_coor.size(0), 1, 1)

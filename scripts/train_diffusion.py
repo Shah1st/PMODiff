@@ -109,6 +109,12 @@ if __name__ == '__main__':
     # print(model)
     print(f'protein feature dim: {protein_featurizer.feature_dim} ligand feature dim: {ligand_featurizer.feature_dim}')
     logger.info(f'# trainable parameters: {misc.count_parameters(model) / 1e6:.4f} M')
+    logger.info(
+        "Model hyperparams: loss_v_weight=%.3f, spp_weight=%.3f, compactness_weight=%.3f",
+         config.model.loss_v_weight,
+         config.model.spp_weight,
+         config.model.compactness_weight,
+         )
 
     # Optimizer and scheduler
     optimizer = utils_train.get_optimizer(config.train.optimizer, model)
@@ -163,6 +169,9 @@ if __name__ == '__main__':
             writer.add_scalar('Training/Energy', energy, it)
             writer.add_scalar('Learning Rate', optimizer.param_groups[0]['lr'], it)
             writer.add_scalar('Gradient Norm', orig_grad_norm, it)
+            #
+            writer.add_text("config/model", yaml.safe_dump(config.model, sort_keys=False), 0)
+
             writer.flush()
 
     def validate(it):
