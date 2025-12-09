@@ -40,7 +40,7 @@ model:
   r_max: 10.
   x2h_out_fc: False
   sync_twoup: False
-  compactness_weight: 0.
+  compactenss_weight: 0.
   spp_weight: 0.
 
 

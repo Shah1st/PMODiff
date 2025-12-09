@@ -13,5 +13,6 @@ conda activate tagmol
 #conda list
 echo $CUDA_VISIBLE_DEVICES
 cd "$SLURM_SUBMIT_DIR"
+cd /mnt/scratch/users/andrij/PMODiff
 #python scripts/train_diffusion.py configs/tuning_0_0.yml
-python -m scripts.train_diffusion configs/tuning_0_0.yml
+python -m scripts.train_diffusion --config configs/tuning_0_0.yml
