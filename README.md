@@ -28,9 +28,27 @@ conda env create -f environment.yml
 
 -----
 
-## Data and Checkpoints
-The resources can be found [here](https://drive.google.com/drive/folders/1Bvm95J0U9WMqAohvDu2LgA9GDv8l3x-t?usp=sharing). The data are inside `data` directory, and the guide checkpoints are inside `logs`.
+## Download
+- **Data**: Download from [data_correct](https://drive.google.com/drive/folders/1YtbBpnaIBOE1Ou7S9JVFdxhInUIMuaUo?usp=sharing)
 
+### Setup
+Place the downloaded data in the `./data/` directory. The expected structure:
+```
+./data/
+├── crossdocked_pocket10_pose_split.pt
+├── crossdocked_v1.1_rmsd1.0_pocket10_processed_final-001.lmdb
+├── guide/
+│   ├── crossdocked_pocket10_pose_split_dock_guide.pt
+│   └── crossdocked_v1.1_rmsd1.0_pocket10_processed_dock_guide_final-002.lmdb
+└── test_set/
+```
+
+**Important**: The split files (`.pt`) must match their corresponding LMDB databases. If you regenerate the LMDB, you must also regenerate the split file:
+```bash
+python scripts/data_preparation/split_pl_dataset.py \
+  --path ./data/crossdocked_v1.1_rmsd1.0_pocket10 \
+  --dest ./data/crossdocked_pocket10_pose_split.pt
+```
 
 ## Training
 ### Training Diffusion model from scratch
