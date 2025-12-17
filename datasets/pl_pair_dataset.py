@@ -109,9 +109,16 @@ class PocketLigandPairDataset(Dataset):
 
     def get_ori_data(self, idx):
         if self.db is None:
-            self._connect_db()
+           self._connect_db()
         key = self.keys[idx]
         data = pickle.loads(self.db.begin().get(key))
+        #
+       # key = str(idx).encode()
+       # buf = self.db.begin().get(key)
+       # if buf is None:
+       #     raise KeyError(f"Missing LMDB key for idx={idx}")
+       # data = pickle.loads(buf)
+       #
         data = ProteinLigandData(**data)
         data.id = idx
         assert data.protein_pos.size(0) > 0

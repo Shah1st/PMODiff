@@ -1,7 +1,7 @@
 import argparse
 import os, sys
 import shutil
-
+import yaml
 import numpy as np
 import torch
 import torch.utils.tensorboard
@@ -170,7 +170,8 @@ if __name__ == '__main__':
             writer.add_scalar('Learning Rate', optimizer.param_groups[0]['lr'], it)
             writer.add_scalar('Gradient Norm', orig_grad_norm, it)
             #
-            writer.add_text("config/model", yaml.safe_dump(config.model, sort_keys=False), 0)
+            #writer.add_text("config/model", yaml.safe_dump(config.model, sort_keys=False), 0)
+            writer.add_text("config/model", yaml.safe_dump(dict(config.model), sort_keys=False), 0)
 
             writer.flush()
 
@@ -257,7 +258,10 @@ if __name__ == '__main__':
             if it % config.train.val_freq == 0 or it == config.train.max_iters:
                 val_loss = validate(it)
                 if best_loss is None or val_loss < best_loss:
-                    logger.info(f'[Validate] Best val loss achieved: {val_loss:.6f}')
+                    if val_loss is None:
+                        logger.info('[Validate] Best val loss achieved: N/A (val_loss is None)')
+                    else:
+                        logger.info(f'[Validate] Best val loss achieved: {val_loss}')
                     best_loss, best_iter = val_loss, it
                     ckpt_path = os.path.join(ckpt_dir, '%d.pt' % it)
                     torch.save({

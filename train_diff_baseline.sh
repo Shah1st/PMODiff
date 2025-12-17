@@ -13,4 +13,4 @@ conda activate tagmol
 #conda list
 echo $CUDA_VISIBLE_DEVICES
 cd "$SLURM_SUBMIT_DIR"
-python -m scripts.train_diffusion configs/training.yml
+python -m scripts.train_diffusion --config configs/training.yml
