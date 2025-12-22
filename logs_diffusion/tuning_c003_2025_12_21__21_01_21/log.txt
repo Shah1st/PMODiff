@@ -1,0 +1,533 @@
+[2025-12-21 21:01:21,042::train::INFO] Namespace(config='configs/tuning_c003.yml', device='cuda', logdir='./logs_diffusion', tag='', train_report_iter=200)
+[2025-12-21 21:01:21,042::train::INFO] {'data': {'name': 'pl', 'path': './data/crossdocked_v1.1_rmsd1.0_pocket10', 'split': './data/crossdocked_pocket10_pose_split.pt', 'transform': {'ligand_atom_mode': 'add_aromatic', 'random_rot': False}}, 'model': {'model_mean_type': 'C0', 'beta_schedule': 'sigmoid', 'beta_start': 1e-07, 'beta_end': 0.002, 'v_beta_schedule': 'cosine', 'v_beta_s': 0.01, 'num_diffusion_timesteps': 1000, 'loss_v_weight': 100.0, 'sample_time_method': 'symmetric', 'time_emb_dim': 0, 'time_emb_mode': 'simple', 'center_pos_mode': 'protein', 'node_indicator': True, 'model_type': 'uni_o2', 'num_blocks': 1, 'num_layers': 9, 'hidden_dim': 128, 'n_heads': 16, 'edge_feat_dim': 4, 'num_r_gaussian': 20, 'knn': 32, 'num_node_types': 8, 'act_fn': 'relu', 'norm': True, 'cutoff_mode': 'knn', 'ew_net_type': 'global', 'num_x2h': 1, 'num_h2x': 1, 'r_max': 10.0, 'x2h_out_fc': False, 'sync_twoup': False, 'compactness_weight': 0.003, 'spp_weight': 0.0}, 'train': {'seed': 2021, 'batch_size': 4, 'num_workers': 4, 'n_acc_batch': 1, 'max_iters': 100000, 'val_freq': 2000, 'pos_noise_std': 0.1, 'max_grad_norm': 8.0, 'bond_loss_weight': 1.0, 'optimizer': {'type': 'adam', 'lr': 0.001, 'weight_decay': 0, 'beta1': 0.95, 'beta2': 0.999}, 'scheduler': {'type': 'plateau', 'factor': 0.6, 'patience': 10, 'min_lr': 1e-06}}}
+[2025-12-21 21:01:21,211::train::INFO] Loading dataset...
+[2025-12-21 21:01:28,428::train::INFO] Training: 163170 Validation: 3330
+[2025-12-21 21:01:28,429::train::INFO] Building model...
+[2025-12-21 21:01:35,032::train::INFO] # trainable parameters: 2.8247 M
+[2025-12-21 21:01:35,032::train::INFO] Model hyperparams: loss_v_weight=100.000, spp_weight=0.000, compactness_weight=0.003
+[2025-12-21 21:02:13,234::train::INFO] [Train] Iter 00200 | Loss 1.071120 | Loss pos 0.908688 | Loss v 0.001512 | Compact 3.728113 | SPP 0.000000 | Energy 0.760485 | Grad 0.8122 | LR 0.001000
+[2025-12-21 21:02:43,518::train::INFO] [Train] Iter 00400 | Loss 1.181332 | Loss pos 1.003687 | Loss v 0.001609 | Compact 5.568505 | SPP 0.000000 | Energy 0.989603 | Grad 0.9125 | LR 0.001000
+[2025-12-21 21:03:14,080::train::INFO] [Train] Iter 00600 | Loss 0.807055 | Loss pos 0.689076 | Loss v 0.001046 | Compact 4.461386 | SPP 0.000000 | Energy 0.596299 | Grad 1.6464 | LR 0.001000
+[2025-12-21 21:03:44,716::train::INFO] [Train] Iter 00800 | Loss 0.531308 | Loss pos 0.438499 | Loss v 0.000677 | Compact 8.378633 | SPP 0.000000 | Energy 0.696809 | Grad 0.4528 | LR 0.001000
+[2025-12-21 21:04:15,187::train::INFO] [Train] Iter 01000 | Loss 0.477052 | Loss pos 0.305534 | Loss v 0.001378 | Compact 11.226962 | SPP 0.000000 | Energy 1.025708 | Grad 0.9351 | LR 0.001000
+[2025-12-21 21:04:45,480::train::INFO] [Train] Iter 01200 | Loss 0.829244 | Loss pos 0.650533 | Loss v 0.001495 | Compact 9.732534 | SPP 0.000000 | Energy 0.848239 | Grad 1.2131 | LR 0.001000
+[2025-12-21 21:05:15,795::train::INFO] [Train] Iter 01400 | Loss 0.424171 | Loss pos 0.267253 | Loss v 0.001260 | Compact 10.311871 | SPP 0.000000 | Energy 0.913539 | Grad 0.5137 | LR 0.001000
+[2025-12-21 21:05:45,927::train::INFO] [Train] Iter 01600 | Loss 0.711357 | Loss pos 0.424131 | Loss v 0.002467 | Compact 13.501959 | SPP 0.000000 | Energy 1.314371 | Grad 1.1207 | LR 0.001000
+[2025-12-21 21:06:16,255::train::INFO] [Train] Iter 01800 | Loss 1.334719 | Loss pos 1.223299 | Loss v 0.000913 | Compact 6.700165 | SPP 0.000000 | Energy 1.860467 | Grad 2.6713 | LR 0.001000
+[2025-12-21 21:06:46,697::train::INFO] [Train] Iter 02000 | Loss 0.713499 | Loss pos 0.551892 | Loss v 0.001443 | Compact 5.781086 | SPP 0.000000 | Energy 0.854384 | Grad 0.8775 | LR 0.001000
+[2025-12-21 21:13:34,819::train::INFO] [Validate] Iter 02000 | Loss 1.025118 | Loss pos 0.908222 | Loss v 0.927868 e-3 | Avg atom auroc 0.866159 | Compact 8.036193 | SPP 0.000000
+[2025-12-21 21:13:34,834::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-21 21:14:05,286::train::INFO] [Train] Iter 02200 | Loss 0.782287 | Loss pos 0.644384 | Loss v 0.000999 | Compact 12.680138 | SPP 0.000000 | Energy 0.704490 | Grad 0.4298 | LR 0.001000
+[2025-12-21 21:14:35,644::train::INFO] [Train] Iter 02400 | Loss 1.556677 | Loss pos 1.448075 | Loss v 0.001049 | Compact 1.230993 | SPP 0.000000 | Energy 0.689965 | Grad 1.5711 | LR 0.001000
+[2025-12-21 21:15:06,196::train::INFO] [Train] Iter 02600 | Loss 0.551862 | Loss pos 0.397063 | Loss v 0.001361 | Compact 6.247101 | SPP 0.000000 | Energy 0.689666 | Grad 0.6311 | LR 0.001000
+[2025-12-21 21:15:36,729::train::INFO] [Train] Iter 02800 | Loss 1.353444 | Loss pos 1.229517 | Loss v 0.001130 | Compact 3.638329 | SPP 0.000000 | Energy 0.705618 | Grad 1.2792 | LR 0.001000
+[2025-12-21 21:16:07,039::train::INFO] [Train] Iter 03000 | Loss 0.754746 | Loss pos 0.581877 | Loss v 0.001398 | Compact 11.022154 | SPP 0.000000 | Energy 0.909159 | Grad 0.8597 | LR 0.001000
+[2025-12-21 21:16:37,642::train::INFO] [Train] Iter 03200 | Loss 0.790510 | Loss pos 0.688831 | Loss v 0.000811 | Compact 6.873061 | SPP 0.000000 | Energy 0.799000 | Grad 0.4105 | LR 0.001000
+[2025-12-21 21:17:07,841::train::INFO] [Train] Iter 03400 | Loss 0.412609 | Loss pos 0.280386 | Loss v 0.001045 | Compact 9.233236 | SPP 0.000000 | Energy 0.802717 | Grad 1.0056 | LR 0.001000
+[2025-12-21 21:17:38,437::train::INFO] [Train] Iter 03600 | Loss 0.910124 | Loss pos 0.791969 | Loss v 0.000908 | Compact 9.133659 | SPP 0.000000 | Energy 0.868860 | Grad 0.4022 | LR 0.001000
+[2025-12-21 21:18:08,740::train::INFO] [Train] Iter 03800 | Loss 1.364967 | Loss pos 1.257076 | Loss v 0.000974 | Compact 3.484024 | SPP 0.000000 | Energy 1.044149 | Grad 1.2179 | LR 0.001000
+[2025-12-21 21:18:39,262::train::INFO] [Train] Iter 04000 | Loss 0.830774 | Loss pos 0.767365 | Loss v 0.000402 | Compact 7.732376 | SPP 0.000000 | Energy 0.891513 | Grad 1.4858 | LR 0.001000
+[2025-12-21 21:24:34,920::train::INFO] [Validate] Iter 04000 | Loss 0.952780 | Loss pos 0.842419 | Loss v 0.866378 e-3 | Avg atom auroc 0.887301 | Compact 7.908069 | SPP 0.000000
+[2025-12-21 21:24:34,934::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-21 21:25:05,558::train::INFO] [Train] Iter 04200 | Loss 0.244116 | Loss pos 0.141337 | Loss v 0.000657 | Compact 12.353803 | SPP 0.000000 | Energy 1.367771 | Grad 0.2612 | LR 0.001000
+[2025-12-21 21:25:36,208::train::INFO] [Train] Iter 04400 | Loss 0.499238 | Loss pos 0.448452 | Loss v 0.000266 | Compact 8.045803 | SPP 0.000000 | Energy 0.733231 | Grad 0.2693 | LR 0.001000
+[2025-12-21 21:26:06,962::train::INFO] [Train] Iter 04600 | Loss 0.959171 | Loss pos 0.794576 | Loss v 0.001364 | Compact 9.402888 | SPP 0.000000 | Energy 1.173037 | Grad 1.8490 | LR 0.001000
+[2025-12-21 21:26:37,689::train::INFO] [Train] Iter 04800 | Loss 0.552757 | Loss pos 0.450782 | Loss v 0.000826 | Compact 6.465827 | SPP 0.000000 | Energy 0.773625 | Grad 0.6068 | LR 0.001000
+[2025-12-21 21:27:08,400::train::INFO] [Train] Iter 05000 | Loss 1.203584 | Loss pos 1.125103 | Loss v 0.000437 | Compact 11.595136 | SPP 0.000000 | Energy 0.991646 | Grad 1.1781 | LR 0.001000
+[2025-12-21 21:27:39,131::train::INFO] [Train] Iter 05200 | Loss 0.531569 | Loss pos 0.450311 | Loss v 0.000650 | Compact 5.419156 | SPP 0.000000 | Energy 0.714428 | Grad 0.3088 | LR 0.001000
+[2025-12-21 21:28:09,554::train::INFO] [Train] Iter 05400 | Loss 0.913507 | Loss pos 0.834327 | Loss v 0.000639 | Compact 5.091210 | SPP 0.000000 | Energy 0.719564 | Grad 1.7124 | LR 0.001000
+[2025-12-21 21:28:40,231::train::INFO] [Train] Iter 05600 | Loss 0.721465 | Loss pos 0.579694 | Loss v 0.001309 | Compact 3.639385 | SPP 0.000000 | Energy 0.601639 | Grad 0.6461 | LR 0.001000
+[2025-12-21 21:29:10,928::train::INFO] [Train] Iter 05800 | Loss 0.506441 | Loss pos 0.396228 | Loss v 0.000574 | Compact 17.618668 | SPP 0.000000 | Energy 0.780994 | Grad 0.6195 | LR 0.001000
+[2025-12-21 21:29:41,449::train::INFO] [Train] Iter 06000 | Loss 0.856032 | Loss pos 0.739759 | Loss v 0.000987 | Compact 5.856399 | SPP 0.000000 | Energy 0.618778 | Grad 0.8342 | LR 0.001000
+[2025-12-21 21:35:36,626::train::INFO] [Validate] Iter 06000 | Loss 0.935174 | Loss pos 0.830480 | Loss v 0.809537 e-3 | Avg atom auroc 0.895347 | Compact 7.913534 | SPP 0.000000
+[2025-12-21 21:35:36,641::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-21 21:36:06,923::train::INFO] [Train] Iter 06200 | Loss 0.526051 | Loss pos 0.345459 | Loss v 0.001633 | Compact 5.773109 | SPP 0.000000 | Energy 0.586722 | Grad 0.7910 | LR 0.001000
+[2025-12-21 21:36:37,520::train::INFO] [Train] Iter 06400 | Loss 1.343102 | Loss pos 1.234787 | Loss v 0.000930 | Compact 5.102202 | SPP 0.000000 | Energy 0.634410 | Grad 0.8448 | LR 0.001000
+[2025-12-21 21:37:08,168::train::INFO] [Train] Iter 06600 | Loss 0.618895 | Loss pos 0.535224 | Loss v 0.000630 | Compact 6.896462 | SPP 0.000000 | Energy 0.527773 | Grad 0.5024 | LR 0.001000
+[2025-12-21 21:37:38,607::train::INFO] [Train] Iter 06800 | Loss 0.892382 | Loss pos 0.815052 | Loss v 0.000574 | Compact 6.657253 | SPP 0.000000 | Energy 0.795369 | Grad 0.2811 | LR 0.001000
+[2025-12-21 21:38:09,201::train::INFO] [Train] Iter 07000 | Loss 1.491069 | Loss pos 1.387337 | Loss v 0.000928 | Compact 3.657045 | SPP 0.000000 | Energy 0.765754 | Grad 0.5395 | LR 0.001000
+[2025-12-21 21:38:39,860::train::INFO] [Train] Iter 07200 | Loss 0.921435 | Loss pos 0.837963 | Loss v 0.000390 | Compact 14.824786 | SPP 0.000000 | Energy 0.937991 | Grad 2.6577 | LR 0.001000
+[2025-12-21 21:39:10,221::train::INFO] [Train] Iter 07400 | Loss 0.957506 | Loss pos 0.846634 | Loss v 0.000984 | Compact 4.160069 | SPP 0.000000 | Energy 1.001716 | Grad 0.6972 | LR 0.001000
+[2025-12-21 21:39:40,494::train::INFO] [Train] Iter 07600 | Loss 0.799070 | Loss pos 0.680013 | Loss v 0.001045 | Compact 4.847667 | SPP 0.000000 | Energy 0.625109 | Grad 0.5678 | LR 0.001000
+[2025-12-21 21:40:11,138::train::INFO] [Train] Iter 07800 | Loss 1.253049 | Loss pos 1.141760 | Loss v 0.000911 | Compact 6.735639 | SPP 0.000000 | Energy 0.900997 | Grad 0.7701 | LR 0.001000
+[2025-12-21 21:40:41,393::train::INFO] [Train] Iter 08000 | Loss 1.015350 | Loss pos 0.898736 | Loss v 0.000856 | Compact 10.338235 | SPP 0.000000 | Energy 1.329005 | Grad 1.8014 | LR 0.001000
+[2025-12-21 21:46:35,105::train::INFO] [Validate] Iter 08000 | Loss 0.909046 | Loss pos 0.807262 | Loss v 0.780103 e-3 | Avg atom auroc 0.895021 | Compact 7.924599 | SPP 0.000000
+[2025-12-21 21:46:35,120::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-21 21:47:05,458::train::INFO] [Train] Iter 08200 | Loss 1.083782 | Loss pos 1.009892 | Loss v 0.000538 | Compact 6.709729 | SPP 0.000000 | Energy 1.230945 | Grad 0.4349 | LR 0.001000
+[2025-12-21 21:47:35,740::train::INFO] [Train] Iter 08400 | Loss 0.487261 | Loss pos 0.356114 | Loss v 0.001074 | Compact 7.926622 | SPP 0.000000 | Energy 0.635595 | Grad 0.8504 | LR 0.001000
+[2025-12-21 21:48:05,989::train::INFO] [Train] Iter 08600 | Loss 1.624555 | Loss pos 1.508769 | Loss v 0.001040 | Compact 3.944152 | SPP 0.000000 | Energy 1.204459 | Grad 1.1919 | LR 0.001000
+[2025-12-21 21:48:35,736::train::INFO] [Train] Iter 08800 | Loss 0.906972 | Loss pos 0.759292 | Loss v 0.001334 | Compact 4.771471 | SPP 0.000000 | Energy 0.762589 | Grad 0.8468 | LR 0.001000
+[2025-12-21 21:49:05,590::train::INFO] [Train] Iter 09000 | Loss 1.239566 | Loss pos 1.094864 | Loss v 0.001312 | Compact 4.486717 | SPP 0.000000 | Energy 0.699260 | Grad 0.5154 | LR 0.001000
+[2025-12-21 21:49:35,776::train::INFO] [Train] Iter 09200 | Loss 0.526567 | Loss pos 0.444284 | Loss v 0.000650 | Compact 5.759580 | SPP 0.000000 | Energy 0.931994 | Grad 0.2672 | LR 0.001000
+[2025-12-21 21:50:06,243::train::INFO] [Train] Iter 09400 | Loss 1.286898 | Loss pos 1.197924 | Loss v 0.000594 | Compact 9.873760 | SPP 0.000000 | Energy 0.791748 | Grad 1.1059 | LR 0.001000
+[2025-12-21 21:50:36,070::train::INFO] [Train] Iter 09600 | Loss 0.693381 | Loss pos 0.608592 | Loss v 0.000587 | Compact 8.712687 | SPP 0.000000 | Energy 1.202319 | Grad 1.3619 | LR 0.001000
+[2025-12-21 21:51:06,146::train::INFO] [Train] Iter 09800 | Loss 1.157023 | Loss pos 1.016422 | Loss v 0.001246 | Compact 5.346522 | SPP 0.000000 | Energy 1.107399 | Grad 0.7078 | LR 0.001000
+[2025-12-21 21:51:36,234::train::INFO] [Train] Iter 10000 | Loss 0.245439 | Loss pos 0.157186 | Loss v 0.000659 | Compact 7.438599 | SPP 0.000000 | Energy 0.725935 | Grad 0.6085 | LR 0.001000
+[2025-12-21 21:57:30,790::train::INFO] [Validate] Iter 10000 | Loss 0.902381 | Loss pos 0.804139 | Loss v 0.744871 e-3 | Avg atom auroc 0.906572 | Compact 7.918273 | SPP 0.000000
+[2025-12-21 21:57:30,806::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-21 21:58:00,697::train::INFO] [Train] Iter 10200 | Loss 0.724924 | Loss pos 0.645383 | Loss v 0.000400 | Compact 13.170210 | SPP 0.000000 | Energy 1.121746 | Grad 0.5872 | LR 0.001000
+[2025-12-21 21:58:30,833::train::INFO] [Train] Iter 10400 | Loss 0.365183 | Loss pos 0.288602 | Loss v 0.000516 | Compact 8.318154 | SPP 0.000000 | Energy 0.993595 | Grad 0.2090 | LR 0.001000
+[2025-12-21 21:59:00,810::train::INFO] [Train] Iter 10600 | Loss 0.215202 | Loss pos 0.108125 | Loss v 0.000838 | Compact 7.750730 | SPP 0.000000 | Energy 0.825700 | Grad 0.2408 | LR 0.001000
+[2025-12-21 21:59:31,084::train::INFO] [Train] Iter 10800 | Loss 1.256349 | Loss pos 1.103954 | Loss v 0.001280 | Compact 8.124481 | SPP 0.000000 | Energy 0.883007 | Grad 0.7532 | LR 0.001000
+[2025-12-21 22:00:01,143::train::INFO] [Train] Iter 11000 | Loss 0.651533 | Loss pos 0.567443 | Loss v 0.000693 | Compact 4.941102 | SPP 0.000000 | Energy 0.678613 | Grad 0.6036 | LR 0.001000
+[2025-12-21 22:00:31,199::train::INFO] [Train] Iter 11200 | Loss 0.885373 | Loss pos 0.751653 | Loss v 0.000900 | Compact 14.583650 | SPP 0.000000 | Energy 1.466103 | Grad 0.4602 | LR 0.001000
+[2025-12-21 22:01:01,266::train::INFO] [Train] Iter 11400 | Loss 0.782564 | Loss pos 0.697954 | Loss v 0.000604 | Compact 8.062436 | SPP 0.000000 | Energy 1.125660 | Grad 0.6319 | LR 0.001000
+[2025-12-21 22:01:31,277::train::INFO] [Train] Iter 11600 | Loss 1.591816 | Loss pos 1.450564 | Loss v 0.001266 | Compact 4.875787 | SPP 0.000000 | Energy 0.970065 | Grad 1.9178 | LR 0.001000
+[2025-12-21 22:02:01,396::train::INFO] [Train] Iter 11800 | Loss 0.468485 | Loss pos 0.323223 | Loss v 0.001060 | Compact 13.075039 | SPP 0.000000 | Energy 1.011893 | Grad 0.7506 | LR 0.001000
+[2025-12-21 22:02:31,368::train::INFO] [Train] Iter 12000 | Loss 0.784182 | Loss pos 0.649472 | Loss v 0.001188 | Compact 5.290063 | SPP 0.000000 | Energy 0.947798 | Grad 0.7033 | LR 0.001000
+[2025-12-21 22:08:25,351::train::INFO] [Validate] Iter 12000 | Loss 0.881472 | Loss pos 0.783268 | Loss v 0.736712 e-3 | Avg atom auroc 0.912321 | Compact 8.177545 | SPP 0.000000
+[2025-12-21 22:08:25,365::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-21 22:08:55,316::train::INFO] [Train] Iter 12200 | Loss 0.334955 | Loss pos 0.181657 | Loss v 0.001298 | Compact 7.840798 | SPP 0.000000 | Energy 0.598812 | Grad 0.2193 | LR 0.001000
+[2025-12-21 22:09:25,016::train::INFO] [Train] Iter 12400 | Loss 0.823813 | Loss pos 0.728493 | Loss v 0.000585 | Compact 12.273332 | SPP 0.000000 | Energy 0.726383 | Grad 0.5057 | LR 0.001000
+[2025-12-21 22:09:54,616::train::INFO] [Train] Iter 12600 | Loss 1.669055 | Loss pos 1.562492 | Loss v 0.000958 | Compact 3.595139 | SPP 0.000000 | Energy 0.653906 | Grad 1.0746 | LR 0.001000
+[2025-12-21 22:10:24,715::train::INFO] [Train] Iter 12800 | Loss 0.665954 | Loss pos 0.509643 | Loss v 0.001282 | Compact 9.380656 | SPP 0.000000 | Energy 0.744539 | Grad 0.4935 | LR 0.001000
+[2025-12-21 22:10:54,682::train::INFO] [Train] Iter 13000 | Loss 0.479426 | Loss pos 0.379728 | Loss v 0.000555 | Compact 14.720232 | SPP 0.000000 | Energy 1.068967 | Grad 1.2894 | LR 0.001000
+[2025-12-21 22:11:24,511::train::INFO] [Train] Iter 13200 | Loss 1.162596 | Loss pos 1.085638 | Loss v 0.000613 | Compact 5.222690 | SPP 0.000000 | Energy 0.606593 | Grad 1.0094 | LR 0.001000
+[2025-12-21 22:11:54,410::train::INFO] [Train] Iter 13400 | Loss 0.778797 | Loss pos 0.647439 | Loss v 0.001128 | Compact 6.191703 | SPP 0.000000 | Energy 0.612590 | Grad 1.2524 | LR 0.001000
+[2025-12-21 22:12:24,494::train::INFO] [Train] Iter 13600 | Loss 0.468878 | Loss pos 0.330762 | Loss v 0.001153 | Compact 7.599816 | SPP 0.000000 | Energy 0.762700 | Grad 2.5166 | LR 0.001000
+[2025-12-21 22:12:54,663::train::INFO] [Train] Iter 13800 | Loss 1.344836 | Loss pos 1.249989 | Loss v 0.000834 | Compact 3.799878 | SPP 0.000000 | Energy 1.068032 | Grad 0.5382 | LR 0.001000
+[2025-12-21 22:13:24,545::train::INFO] [Train] Iter 14000 | Loss 1.842338 | Loss pos 1.712557 | Loss v 0.001191 | Compact 3.562329 | SPP 0.000000 | Energy 0.872715 | Grad 0.5896 | LR 0.001000
+[2025-12-21 22:19:16,625::train::INFO] [Validate] Iter 14000 | Loss 0.866300 | Loss pos 0.769517 | Loss v 0.728013 e-3 | Avg atom auroc 0.914537 | Compact 7.993921 | SPP 0.000000
+[2025-12-21 22:19:16,638::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-21 22:19:47,059::train::INFO] [Train] Iter 14200 | Loss 0.548042 | Loss pos 0.424874 | Loss v 0.001009 | Compact 7.427536 | SPP 0.000000 | Energy 0.749326 | Grad 0.5769 | LR 0.001000
+[2025-12-21 22:20:17,075::train::INFO] [Train] Iter 14400 | Loss 1.436792 | Loss pos 1.334880 | Loss v 0.000908 | Compact 3.712218 | SPP 0.000000 | Energy 0.776805 | Grad 0.6213 | LR 0.001000
+[2025-12-21 22:20:47,245::train::INFO] [Train] Iter 14600 | Loss 0.715330 | Loss pos 0.524144 | Loss v 0.001626 | Compact 9.518140 | SPP 0.000000 | Energy 1.090881 | Grad 0.4896 | LR 0.001000
+[2025-12-21 22:21:17,331::train::INFO] [Train] Iter 14800 | Loss 0.277212 | Loss pos 0.173428 | Loss v 0.000676 | Compact 12.053057 | SPP 0.000000 | Energy 0.846158 | Grad 0.3780 | LR 0.001000
+[2025-12-21 22:21:47,382::train::INFO] [Train] Iter 15000 | Loss 0.463735 | Loss pos 0.335374 | Loss v 0.000994 | Compact 9.644311 | SPP 0.000000 | Energy 0.874084 | Grad 0.7831 | LR 0.001000
+[2025-12-21 22:22:17,213::train::INFO] [Train] Iter 15200 | Loss 0.926899 | Loss pos 0.777848 | Loss v 0.001328 | Compact 5.414599 | SPP 0.000000 | Energy 0.961038 | Grad 0.4035 | LR 0.001000
+[2025-12-21 22:22:47,309::train::INFO] [Train] Iter 15400 | Loss 0.814765 | Loss pos 0.687500 | Loss v 0.001112 | Compact 5.367472 | SPP 0.000000 | Energy 0.676693 | Grad 0.7749 | LR 0.001000
+[2025-12-21 22:23:17,173::train::INFO] [Train] Iter 15600 | Loss 1.043139 | Loss pos 0.966111 | Loss v 0.000508 | Compact 8.733534 | SPP 0.000000 | Energy 1.552278 | Grad 1.1155 | LR 0.001000
+[2025-12-21 22:23:47,435::train::INFO] [Train] Iter 15800 | Loss 0.835297 | Loss pos 0.744837 | Loss v 0.000633 | Compact 9.041348 | SPP 0.000000 | Energy 1.406650 | Grad 0.5187 | LR 0.001000
+[2025-12-21 22:24:17,264::train::INFO] [Train] Iter 16000 | Loss 0.245373 | Loss pos 0.169006 | Loss v 0.000598 | Compact 5.527077 | SPP 0.000000 | Energy 0.807867 | Grad 0.3328 | LR 0.001000
+[2025-12-21 22:30:08,679::train::INFO] [Validate] Iter 16000 | Loss 0.860104 | Loss pos 0.764271 | Loss v 0.715771 e-3 | Avg atom auroc 0.921180 | Compact 8.085281 | SPP 0.000000
+[2025-12-21 22:30:08,690::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-21 22:30:38,758::train::INFO] [Train] Iter 16200 | Loss 0.858214 | Loss pos 0.777917 | Loss v 0.000645 | Compact 5.272559 | SPP 0.000000 | Energy 1.472335 | Grad 0.5784 | LR 0.001000
+[2025-12-21 22:31:08,758::train::INFO] [Train] Iter 16400 | Loss 1.293103 | Loss pos 1.171515 | Loss v 0.001065 | Compact 5.018371 | SPP 0.000000 | Energy 1.219733 | Grad 0.8069 | LR 0.001000
+[2025-12-21 22:31:38,595::train::INFO] [Train] Iter 16600 | Loss 0.607952 | Loss pos 0.537434 | Loss v 0.000406 | Compact 9.972002 | SPP 0.000000 | Energy 1.140479 | Grad 0.9954 | LR 0.001000
+[2025-12-21 22:32:08,383::train::INFO] [Train] Iter 16800 | Loss 0.596250 | Loss pos 0.503102 | Loss v 0.000779 | Compact 5.075876 | SPP 0.000000 | Energy 1.335343 | Grad 0.8192 | LR 0.001000
+[2025-12-21 22:32:38,004::train::INFO] [Train] Iter 17000 | Loss 0.735757 | Loss pos 0.698652 | Loss v 0.000165 | Compact 6.854386 | SPP 0.000000 | Energy 0.634059 | Grad 0.7783 | LR 0.001000
+[2025-12-21 22:33:08,058::train::INFO] [Train] Iter 17200 | Loss 0.391939 | Loss pos 0.309282 | Loss v 0.000477 | Compact 11.667612 | SPP 0.000000 | Energy 1.356251 | Grad 0.3865 | LR 0.001000
+[2025-12-21 22:33:38,298::train::INFO] [Train] Iter 17400 | Loss 0.646413 | Loss pos 0.556809 | Loss v 0.000694 | Compact 6.732513 | SPP 0.000000 | Energy 0.897349 | Grad 0.3130 | LR 0.001000
+[2025-12-21 22:34:08,259::train::INFO] [Train] Iter 17600 | Loss 0.286826 | Loss pos 0.209454 | Loss v 0.000485 | Compact 9.627016 | SPP 0.000000 | Energy 0.792324 | Grad 0.1757 | LR 0.001000
+[2025-12-21 22:34:37,796::train::INFO] [Train] Iter 17800 | Loss 0.381937 | Loss pos 0.244793 | Loss v 0.001083 | Compact 9.601505 | SPP 0.000000 | Energy 0.899810 | Grad 0.4749 | LR 0.001000
+[2025-12-21 22:35:07,787::train::INFO] [Train] Iter 18000 | Loss 0.269535 | Loss pos 0.190921 | Loss v 0.000614 | Compact 5.725169 | SPP 0.000000 | Energy 0.747008 | Grad 0.4004 | LR 0.001000
+[2025-12-21 22:41:04,225::train::INFO] [Validate] Iter 18000 | Loss 0.860299 | Loss pos 0.766432 | Loss v 0.695196 e-3 | Avg atom auroc 0.915791 | Compact 8.115891 | SPP 0.000000
+[2025-12-21 22:41:04,242::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-21 22:41:34,122::train::INFO] [Train] Iter 18200 | Loss 0.628652 | Loss pos 0.569368 | Loss v 0.000424 | Compact 5.620704 | SPP 0.000000 | Energy 0.872896 | Grad 0.5973 | LR 0.001000
+[2025-12-21 22:42:03,893::train::INFO] [Train] Iter 18400 | Loss 0.713722 | Loss pos 0.555565 | Loss v 0.001365 | Compact 7.217227 | SPP 0.000000 | Energy 0.916898 | Grad 0.2040 | LR 0.001000
+[2025-12-21 22:42:34,035::train::INFO] [Train] Iter 18600 | Loss 0.427574 | Loss pos 0.219972 | Loss v 0.001805 | Compact 9.048771 | SPP 0.000000 | Energy 0.753177 | Grad 0.7123 | LR 0.001000
+[2025-12-21 22:43:04,329::train::INFO] [Train] Iter 18800 | Loss 1.051599 | Loss pos 0.891452 | Loss v 0.001415 | Compact 6.205827 | SPP 0.000000 | Energy 0.874868 | Grad 2.9204 | LR 0.001000
+[2025-12-21 22:43:34,490::train::INFO] [Train] Iter 19000 | Loss 1.311582 | Loss pos 1.218683 | Loss v 0.000802 | Compact 4.223537 | SPP 0.000000 | Energy 0.758426 | Grad 0.3817 | LR 0.001000
+[2025-12-21 22:44:04,949::train::INFO] [Train] Iter 19200 | Loss 0.866651 | Loss pos 0.804247 | Loss v 0.000270 | Compact 11.805434 | SPP 0.000000 | Energy 1.006150 | Grad 0.6613 | LR 0.001000
+[2025-12-21 22:44:35,393::train::INFO] [Train] Iter 19400 | Loss 0.184425 | Loss pos 0.128970 | Loss v 0.000273 | Compact 9.376804 | SPP 0.000000 | Energy 0.869518 | Grad 0.3624 | LR 0.001000
+[2025-12-21 22:45:05,294::train::INFO] [Train] Iter 19600 | Loss 0.375176 | Loss pos 0.295952 | Loss v 0.000425 | Compact 12.249892 | SPP 0.000000 | Energy 0.931232 | Grad 0.2248 | LR 0.001000
+[2025-12-21 22:45:35,269::train::INFO] [Train] Iter 19800 | Loss 0.726201 | Loss pos 0.635750 | Loss v 0.000675 | Compact 7.645366 | SPP 0.000000 | Energy 1.105605 | Grad 0.8046 | LR 0.001000
+[2025-12-21 22:46:05,614::train::INFO] [Train] Iter 20000 | Loss 0.283429 | Loss pos 0.188222 | Loss v 0.000548 | Compact 13.472301 | SPP 0.000000 | Energy 0.923668 | Grad 0.1831 | LR 0.001000
+[2025-12-21 22:51:57,938::train::INFO] [Validate] Iter 20000 | Loss 0.852742 | Loss pos 0.761960 | Loss v 0.665489 e-3 | Avg atom auroc 0.922452 | Compact 8.077765 | SPP 0.000000
+[2025-12-21 22:51:57,951::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-21 22:52:28,117::train::INFO] [Train] Iter 20200 | Loss 0.852537 | Loss pos 0.737928 | Loss v 0.000844 | Compact 10.073037 | SPP 0.000000 | Energy 0.849095 | Grad 0.7158 | LR 0.001000
+[2025-12-21 22:52:58,086::train::INFO] [Train] Iter 20400 | Loss 0.769552 | Loss pos 0.695274 | Loss v 0.000528 | Compact 7.169370 | SPP 0.000000 | Energy 0.749567 | Grad 1.2476 | LR 0.001000
+[2025-12-21 22:53:28,112::train::INFO] [Train] Iter 20600 | Loss 1.036798 | Loss pos 0.936039 | Loss v 0.000918 | Compact 2.977120 | SPP 0.000000 | Energy 0.759591 | Grad 0.3957 | LR 0.001000
+[2025-12-21 22:53:58,311::train::INFO] [Train] Iter 20800 | Loss 1.050746 | Loss pos 0.963995 | Loss v 0.000360 | Compact 16.900370 | SPP 0.000000 | Energy 1.997901 | Grad 0.3053 | LR 0.001000
+[2025-12-21 22:54:28,105::train::INFO] [Train] Iter 21000 | Loss 0.256056 | Loss pos 0.125471 | Loss v 0.000998 | Compact 10.252191 | SPP 0.000000 | Energy 0.476988 | Grad 0.4333 | LR 0.001000
+[2025-12-21 22:54:57,804::train::INFO] [Train] Iter 21200 | Loss 0.502007 | Loss pos 0.388794 | Loss v 0.000748 | Compact 12.802313 | SPP 0.000000 | Energy 0.918986 | Grad 0.3586 | LR 0.001000
+[2025-12-21 22:55:27,877::train::INFO] [Train] Iter 21400 | Loss 0.873496 | Loss pos 0.799272 | Loss v 0.000465 | Compact 9.236334 | SPP 0.000000 | Energy 0.761165 | Grad 0.4704 | LR 0.001000
+[2025-12-21 22:55:58,208::train::INFO] [Train] Iter 21600 | Loss 0.668909 | Loss pos 0.586180 | Loss v 0.000546 | Compact 9.359935 | SPP 0.000000 | Energy 0.771785 | Grad 0.4840 | LR 0.001000
+[2025-12-21 22:56:28,122::train::INFO] [Train] Iter 21800 | Loss 0.409803 | Loss pos 0.279608 | Loss v 0.000931 | Compact 12.358485 | SPP 0.000000 | Energy 1.110998 | Grad 0.3209 | LR 0.001000
+[2025-12-21 22:56:57,938::train::INFO] [Train] Iter 22000 | Loss 0.776377 | Loss pos 0.713871 | Loss v 0.000358 | Compact 8.900085 | SPP 0.000000 | Energy 0.863271 | Grad 0.5723 | LR 0.001000
+[2025-12-21 23:02:50,465::train::INFO] [Validate] Iter 22000 | Loss 0.850164 | Loss pos 0.757191 | Loss v 0.687844 e-3 | Avg atom auroc 0.919664 | Compact 8.062958 | SPP 0.000000
+[2025-12-21 23:02:50,479::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-21 23:03:20,483::train::INFO] [Train] Iter 22200 | Loss 0.247006 | Loss pos 0.153732 | Loss v 0.000761 | Compact 5.709556 | SPP 0.000000 | Energy 1.010108 | Grad 0.3298 | LR 0.001000
+[2025-12-21 23:03:50,589::train::INFO] [Train] Iter 22400 | Loss 0.604188 | Loss pos 0.568916 | Loss v 0.000145 | Compact 6.919115 | SPP 0.000000 | Energy 0.935785 | Grad 0.3687 | LR 0.001000
+[2025-12-21 23:04:21,328::train::INFO] [Train] Iter 22600 | Loss 0.907260 | Loss pos 0.728138 | Loss v 0.001510 | Compact 9.366924 | SPP 0.000000 | Energy 0.778732 | Grad 1.6010 | LR 0.001000
+[2025-12-21 23:04:51,911::train::INFO] [Train] Iter 22800 | Loss 0.991134 | Loss pos 0.937871 | Loss v 0.000394 | Compact 4.617517 | SPP 0.000000 | Energy 0.835000 | Grad 0.6467 | LR 0.001000
+[2025-12-21 23:05:22,047::train::INFO] [Train] Iter 23000 | Loss 0.915001 | Loss pos 0.745876 | Loss v 0.001560 | Compact 4.386703 | SPP 0.000000 | Energy 0.664957 | Grad 0.7477 | LR 0.001000
+[2025-12-21 23:05:52,464::train::INFO] [Train] Iter 23200 | Loss 0.675141 | Loss pos 0.522464 | Loss v 0.001302 | Compact 7.505490 | SPP 0.000000 | Energy 0.900356 | Grad 0.4538 | LR 0.001000
+[2025-12-21 23:06:22,341::train::INFO] [Train] Iter 23400 | Loss 1.519811 | Loss pos 1.451410 | Loss v 0.000461 | Compact 7.432279 | SPP 0.000000 | Energy 0.686131 | Grad 2.3939 | LR 0.001000
+[2025-12-21 23:06:52,321::train::INFO] [Train] Iter 23600 | Loss 1.016091 | Loss pos 0.926710 | Loss v 0.000673 | Compact 7.374336 | SPP 0.000000 | Energy 0.747154 | Grad 0.7755 | LR 0.001000
+[2025-12-21 23:07:22,749::train::INFO] [Train] Iter 23800 | Loss 1.307506 | Loss pos 1.258480 | Loss v 0.000295 | Compact 6.507547 | SPP 0.000000 | Energy 0.880669 | Grad 0.4111 | LR 0.001000
+[2025-12-21 23:07:53,011::train::INFO] [Train] Iter 24000 | Loss 1.386451 | Loss pos 1.315324 | Loss v 0.000581 | Compact 4.349239 | SPP 0.000000 | Energy 0.760215 | Grad 1.3480 | LR 0.001000
+[2025-12-21 23:13:49,620::train::INFO] [Validate] Iter 24000 | Loss 0.856069 | Loss pos 0.765761 | Loss v 0.663334 e-3 | Avg atom auroc 0.928677 | Compact 7.991637 | SPP 0.000000
+[2025-12-21 23:13:49,633::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-21 23:14:19,633::train::INFO] [Train] Iter 24200 | Loss 1.143017 | Loss pos 1.043063 | Loss v 0.000845 | Compact 5.160032 | SPP 0.000000 | Energy 1.460818 | Grad 1.3790 | LR 0.001000
+[2025-12-21 23:14:49,850::train::INFO] [Train] Iter 24400 | Loss 0.941855 | Loss pos 0.871010 | Loss v 0.000569 | Compact 4.660742 | SPP 0.000000 | Energy 0.715333 | Grad 0.7281 | LR 0.001000
+[2025-12-21 23:15:20,039::train::INFO] [Train] Iter 24600 | Loss 0.359334 | Loss pos 0.289789 | Loss v 0.000463 | Compact 7.764055 | SPP 0.000000 | Energy 0.763222 | Grad 0.2222 | LR 0.001000
+[2025-12-21 23:15:50,313::train::INFO] [Train] Iter 24800 | Loss 0.234069 | Loss pos 0.161054 | Loss v 0.000500 | Compact 7.667350 | SPP 0.000000 | Energy 0.985812 | Grad 0.3404 | LR 0.001000
+[2025-12-21 23:16:20,441::train::INFO] [Train] Iter 25000 | Loss 0.819995 | Loss pos 0.756425 | Loss v 0.000387 | Compact 8.304338 | SPP 0.000000 | Energy 0.634836 | Grad 0.6526 | LR 0.001000
+[2025-12-21 23:16:50,405::train::INFO] [Train] Iter 25200 | Loss 0.426250 | Loss pos 0.291159 | Loss v 0.000844 | Compact 16.894075 | SPP 0.000000 | Energy 1.535477 | Grad 0.3541 | LR 0.001000
+[2025-12-21 23:17:20,393::train::INFO] [Train] Iter 25400 | Loss 0.389255 | Loss pos 0.292166 | Loss v 0.000605 | Compact 12.193604 | SPP 0.000000 | Energy 0.934528 | Grad 0.2821 | LR 0.001000
+[2025-12-21 23:17:50,645::train::INFO] [Train] Iter 25600 | Loss 0.965565 | Loss pos 0.853919 | Loss v 0.001005 | Compact 3.713750 | SPP 0.000000 | Energy 0.598880 | Grad 0.7237 | LR 0.001000
+[2025-12-21 23:18:20,549::train::INFO] [Train] Iter 25800 | Loss 0.768149 | Loss pos 0.646841 | Loss v 0.001051 | Compact 5.387551 | SPP 0.000000 | Energy 1.390200 | Grad 0.3820 | LR 0.001000
+[2025-12-21 23:18:50,249::train::INFO] [Train] Iter 26000 | Loss 0.658085 | Loss pos 0.544711 | Loss v 0.000701 | Compact 14.414339 | SPP 0.000000 | Energy 0.664338 | Grad 0.4159 | LR 0.001000
+[2025-12-21 23:24:42,581::train::INFO] [Validate] Iter 26000 | Loss 0.839771 | Loss pos 0.749977 | Loss v 0.656685 e-3 | Avg atom auroc 0.924161 | Compact 8.041881 | SPP 0.000000
+[2025-12-21 23:24:42,594::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-21 23:25:12,528::train::INFO] [Train] Iter 26200 | Loss 0.860148 | Loss pos 0.812770 | Loss v 0.000230 | Compact 8.117491 | SPP 0.000000 | Energy 0.805487 | Grad 0.7188 | LR 0.001000
+[2025-12-21 23:25:42,743::train::INFO] [Train] Iter 26400 | Loss 0.906948 | Loss pos 0.766037 | Loss v 0.001236 | Compact 5.779408 | SPP 0.000000 | Energy 0.819698 | Grad 1.1507 | LR 0.001000
+[2025-12-21 23:26:12,720::train::INFO] [Train] Iter 26600 | Loss 1.213152 | Loss pos 1.111166 | Loss v 0.000633 | Compact 12.905884 | SPP 0.000000 | Energy 0.878831 | Grad 2.0914 | LR 0.001000
+[2025-12-21 23:26:42,585::train::INFO] [Train] Iter 26800 | Loss 0.941591 | Loss pos 0.844849 | Loss v 0.000795 | Compact 5.751665 | SPP 0.000000 | Energy 0.970124 | Grad 0.4143 | LR 0.001000
+[2025-12-21 23:27:12,705::train::INFO] [Train] Iter 27000 | Loss 0.889124 | Loss pos 0.765037 | Loss v 0.000832 | Compact 13.636970 | SPP 0.000000 | Energy 1.096702 | Grad 0.3407 | LR 0.001000
+[2025-12-21 23:27:42,897::train::INFO] [Train] Iter 27200 | Loss 0.159401 | Loss pos 0.095944 | Loss v 0.000255 | Compact 12.667208 | SPP 0.000000 | Energy 1.599780 | Grad 0.2062 | LR 0.001000
+[2025-12-21 23:28:12,782::train::INFO] [Train] Iter 27400 | Loss 0.974924 | Loss pos 0.871850 | Loss v 0.000787 | Compact 8.109664 | SPP 0.000000 | Energy 0.943370 | Grad 0.4883 | LR 0.001000
+[2025-12-21 23:28:42,590::train::INFO] [Train] Iter 27600 | Loss 1.506967 | Loss pos 1.407262 | Loss v 0.000747 | Compact 8.337585 | SPP 0.000000 | Energy 0.808073 | Grad 0.4287 | LR 0.001000
+[2025-12-21 23:29:12,607::train::INFO] [Train] Iter 27800 | Loss 0.340697 | Loss pos 0.228896 | Loss v 0.000937 | Compact 6.027033 | SPP 0.000000 | Energy 0.729511 | Grad 0.7969 | LR 0.001000
+[2025-12-21 23:29:42,770::train::INFO] [Train] Iter 28000 | Loss 1.000719 | Loss pos 0.955854 | Loss v 0.000344 | Compact 3.494748 | SPP 0.000000 | Energy 0.742471 | Grad 0.5268 | LR 0.001000
+[2025-12-21 23:35:35,817::train::INFO] [Validate] Iter 28000 | Loss 0.826853 | Loss pos 0.738635 | Loss v 0.642201 e-3 | Avg atom auroc 0.931147 | Compact 7.999374 | SPP 0.000000
+[2025-12-21 23:35:35,830::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-21 23:36:05,842::train::INFO] [Train] Iter 28200 | Loss 1.165133 | Loss pos 1.041875 | Loss v 0.000957 | Compact 9.187703 | SPP 0.000000 | Energy 1.314656 | Grad 1.0666 | LR 0.001000
+[2025-12-21 23:36:36,422::train::INFO] [Train] Iter 28400 | Loss 1.084771 | Loss pos 0.987118 | Loss v 0.000821 | Compact 5.178363 | SPP 0.000000 | Energy 1.021375 | Grad 0.4134 | LR 0.001000
+[2025-12-21 23:37:06,456::train::INFO] [Train] Iter 28600 | Loss 0.438900 | Loss pos 0.342707 | Loss v 0.000738 | Compact 7.457276 | SPP 0.000000 | Energy 0.854982 | Grad 0.3391 | LR 0.001000
+[2025-12-21 23:37:36,585::train::INFO] [Train] Iter 28800 | Loss 0.718493 | Loss pos 0.577908 | Loss v 0.000960 | Compact 14.846243 | SPP 0.000000 | Energy 0.853480 | Grad 0.6476 | LR 0.001000
+[2025-12-21 23:38:06,413::train::INFO] [Train] Iter 29000 | Loss 1.159359 | Loss pos 1.043770 | Loss v 0.000915 | Compact 8.031199 | SPP 0.000000 | Energy 0.786866 | Grad 1.1622 | LR 0.001000
+[2025-12-21 23:38:36,378::train::INFO] [Train] Iter 29200 | Loss 0.467691 | Loss pos 0.375386 | Loss v 0.000628 | Compact 9.847034 | SPP 0.000000 | Energy 0.937856 | Grad 0.3441 | LR 0.001000
+[2025-12-21 23:39:06,582::train::INFO] [Train] Iter 29400 | Loss 0.483459 | Loss pos 0.378343 | Loss v 0.000616 | Compact 14.513436 | SPP 0.000000 | Energy 1.394520 | Grad 0.3274 | LR 0.001000
+[2025-12-21 23:39:36,577::train::INFO] [Train] Iter 29600 | Loss 0.743484 | Loss pos 0.589341 | Loss v 0.001227 | Compact 10.496276 | SPP 0.000000 | Energy 0.901573 | Grad 0.7087 | LR 0.001000
+[2025-12-21 23:40:06,582::train::INFO] [Train] Iter 29800 | Loss 0.781668 | Loss pos 0.602678 | Loss v 0.001575 | Compact 7.150252 | SPP 0.000000 | Energy 0.902388 | Grad 0.6975 | LR 0.001000
+[2025-12-21 23:40:36,826::train::INFO] [Train] Iter 30000 | Loss 0.543556 | Loss pos 0.439693 | Loss v 0.000715 | Compact 10.803033 | SPP 0.000000 | Energy 0.883528 | Grad 0.1966 | LR 0.001000
+[2025-12-21 23:46:29,325::train::INFO] [Validate] Iter 30000 | Loss 0.827203 | Loss pos 0.738273 | Loss v 0.649208 e-3 | Avg atom auroc 0.933897 | Compact 8.003077 | SPP 0.000000
+[2025-12-21 23:46:29,338::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-21 23:46:59,649::train::INFO] [Train] Iter 30200 | Loss 0.714939 | Loss pos 0.627285 | Loss v 0.000716 | Compact 5.364032 | SPP 0.000000 | Energy 0.764528 | Grad 0.8698 | LR 0.001000
+[2025-12-21 23:47:29,838::train::INFO] [Train] Iter 30400 | Loss 0.571623 | Loss pos 0.459747 | Loss v 0.000903 | Compact 7.205969 | SPP 0.000000 | Energy 0.980285 | Grad 0.3384 | LR 0.001000
+[2025-12-21 23:47:59,441::train::INFO] [Train] Iter 30600 | Loss 1.413980 | Loss pos 1.368771 | Loss v 0.000249 | Compact 6.774341 | SPP 0.000000 | Energy 0.887779 | Grad 0.4793 | LR 0.001000
+[2025-12-21 23:48:29,501::train::INFO] [Train] Iter 30800 | Loss 1.557374 | Loss pos 1.389201 | Loss v 0.001435 | Compact 8.223646 | SPP 0.000000 | Energy 0.897572 | Grad 0.3868 | LR 0.001000
+[2025-12-21 23:48:59,350::train::INFO] [Train] Iter 31000 | Loss 1.538655 | Loss pos 1.444589 | Loss v 0.000781 | Compact 5.313602 | SPP 0.000000 | Energy 0.940619 | Grad 2.0906 | LR 0.001000
+[2025-12-21 23:49:29,567::train::INFO] [Train] Iter 31200 | Loss 0.629787 | Loss pos 0.525676 | Loss v 0.000707 | Compact 11.128176 | SPP 0.000000 | Energy 1.050658 | Grad 0.6188 | LR 0.001000
+[2025-12-21 23:49:59,399::train::INFO] [Train] Iter 31400 | Loss 0.183318 | Loss pos 0.103673 | Loss v 0.000615 | Compact 6.053777 | SPP 0.000000 | Energy 0.800673 | Grad 0.2770 | LR 0.001000
+[2025-12-21 23:50:29,433::train::INFO] [Train] Iter 31600 | Loss 0.626390 | Loss pos 0.545021 | Loss v 0.000674 | Compact 4.662436 | SPP 0.000000 | Energy 0.624068 | Grad 0.7325 | LR 0.001000
+[2025-12-21 23:50:59,999::train::INFO] [Train] Iter 31800 | Loss 0.620573 | Loss pos 0.492643 | Loss v 0.001110 | Compact 5.638302 | SPP 0.000000 | Energy 0.785744 | Grad 0.4471 | LR 0.001000
+[2025-12-21 23:51:29,906::train::INFO] [Train] Iter 32000 | Loss 0.960525 | Loss pos 0.892096 | Loss v 0.000549 | Compact 4.493722 | SPP 0.000000 | Energy 0.816994 | Grad 1.2983 | LR 0.001000
+[2025-12-21 23:57:21,937::train::INFO] [Validate] Iter 32000 | Loss 0.835160 | Loss pos 0.746166 | Loss v 0.648428 e-3 | Avg atom auroc 0.930297 | Compact 8.050241 | SPP 0.000000
+[2025-12-21 23:57:21,949::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-21 23:57:52,049::train::INFO] [Train] Iter 32200 | Loss 1.046771 | Loss pos 0.959624 | Loss v 0.000738 | Compact 4.444210 | SPP 0.000000 | Energy 0.925297 | Grad 0.3264 | LR 0.001000
+[2025-12-21 23:58:22,194::train::INFO] [Train] Iter 32400 | Loss 0.476930 | Loss pos 0.389435 | Loss v 0.000674 | Compact 6.700080 | SPP 0.000000 | Energy 0.741043 | Grad 0.3067 | LR 0.001000
+[2025-12-21 23:58:52,185::train::INFO] [Train] Iter 32600 | Loss 0.576373 | Loss pos 0.444643 | Loss v 0.001074 | Compact 8.114429 | SPP 0.000000 | Energy 0.929618 | Grad 0.3102 | LR 0.001000
+[2025-12-21 23:59:22,032::train::INFO] [Train] Iter 32800 | Loss 0.744780 | Loss pos 0.664747 | Loss v 0.000708 | Compact 3.063933 | SPP 0.000000 | Energy 0.623747 | Grad 1.0566 | LR 0.001000
+[2025-12-21 23:59:52,159::train::INFO] [Train] Iter 33000 | Loss 0.461779 | Loss pos 0.351564 | Loss v 0.000739 | Compact 12.092731 | SPP 0.000000 | Energy 1.042060 | Grad 0.4429 | LR 0.001000
+[2025-12-22 00:00:22,369::train::INFO] [Train] Iter 33200 | Loss 0.280622 | Loss pos 0.203125 | Loss v 0.000606 | Compact 5.620827 | SPP 0.000000 | Energy 0.750737 | Grad 0.2851 | LR 0.001000
+[2025-12-22 00:00:52,441::train::INFO] [Train] Iter 33400 | Loss 0.857774 | Loss pos 0.752148 | Loss v 0.000798 | Compact 8.610377 | SPP 0.000000 | Energy 1.051619 | Grad 0.6469 | LR 0.001000
+[2025-12-22 00:01:22,278::train::INFO] [Train] Iter 33600 | Loss 0.180416 | Loss pos 0.109211 | Loss v 0.000402 | Compact 10.346556 | SPP 0.000000 | Energy 0.881224 | Grad 0.2748 | LR 0.001000
+[2025-12-22 00:01:52,173::train::INFO] [Train] Iter 33800 | Loss 0.740700 | Loss pos 0.607173 | Loss v 0.000857 | Compact 15.927735 | SPP 0.000000 | Energy 1.036554 | Grad 0.9817 | LR 0.001000
+[2025-12-22 00:02:22,149::train::INFO] [Train] Iter 34000 | Loss 0.846558 | Loss pos 0.741810 | Loss v 0.000746 | Compact 10.033533 | SPP 0.000000 | Energy 0.895112 | Grad 0.4140 | LR 0.001000
+[2025-12-22 00:08:14,537::train::INFO] [Validate] Iter 34000 | Loss 0.827977 | Loss pos 0.738950 | Loss v 0.647869 e-3 | Avg atom auroc 0.932462 | Compact 8.080139 | SPP 0.000000
+[2025-12-22 00:08:14,551::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 00:08:45,063::train::INFO] [Train] Iter 34200 | Loss 0.511596 | Loss pos 0.424152 | Loss v 0.000753 | Compact 4.050793 | SPP 0.000000 | Energy 0.579954 | Grad 0.4624 | LR 0.001000
+[2025-12-22 00:09:15,264::train::INFO] [Train] Iter 34400 | Loss 0.919530 | Loss pos 0.839383 | Loss v 0.000591 | Compact 7.000721 | SPP 0.000000 | Energy 1.166013 | Grad 0.6200 | LR 0.001000
+[2025-12-22 00:09:45,190::train::INFO] [Train] Iter 34600 | Loss 0.548156 | Loss pos 0.428897 | Loss v 0.000891 | Compact 10.040087 | SPP 0.000000 | Energy 1.250375 | Grad 0.3571 | LR 0.001000
+[2025-12-22 00:10:15,191::train::INFO] [Train] Iter 34800 | Loss 0.702233 | Loss pos 0.614339 | Loss v 0.000493 | Compact 12.861662 | SPP 0.000000 | Energy 0.917484 | Grad 0.3083 | LR 0.001000
+[2025-12-22 00:10:45,941::train::INFO] [Train] Iter 35000 | Loss 1.012522 | Loss pos 0.927755 | Loss v 0.000597 | Compact 8.349724 | SPP 0.000000 | Energy 1.908258 | Grad 0.4398 | LR 0.001000
+[2025-12-22 00:11:15,681::train::INFO] [Train] Iter 35200 | Loss 1.266358 | Loss pos 1.178761 | Loss v 0.000753 | Compact 4.104616 | SPP 0.000000 | Energy 1.368068 | Grad 0.2808 | LR 0.001000
+[2025-12-22 00:11:45,819::train::INFO] [Train] Iter 35400 | Loss 1.218645 | Loss pos 1.103509 | Loss v 0.000993 | Compact 5.272592 | SPP 0.000000 | Energy 0.734335 | Grad 0.3642 | LR 0.001000
+[2025-12-22 00:12:15,713::train::INFO] [Train] Iter 35600 | Loss 0.489117 | Loss pos 0.401837 | Loss v 0.000568 | Compact 10.147582 | SPP 0.000000 | Energy 0.727017 | Grad 0.7211 | LR 0.001000
+[2025-12-22 00:12:45,851::train::INFO] [Train] Iter 35800 | Loss 0.411200 | Loss pos 0.312114 | Loss v 0.000624 | Compact 12.229297 | SPP 0.000000 | Energy 1.021455 | Grad 0.3886 | LR 0.001000
+[2025-12-22 00:13:15,971::train::INFO] [Train] Iter 36000 | Loss 0.865776 | Loss pos 0.734779 | Loss v 0.001153 | Compact 5.222508 | SPP 0.000000 | Energy 0.718343 | Grad 0.5708 | LR 0.001000
+[2025-12-22 00:19:08,596::train::INFO] [Validate] Iter 36000 | Loss 0.817646 | Loss pos 0.731394 | Loss v 0.623694 e-3 | Avg atom auroc 0.934062 | Compact 7.960785 | SPP 0.000000
+[2025-12-22 00:19:08,609::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 00:19:38,714::train::INFO] [Train] Iter 36200 | Loss 0.476544 | Loss pos 0.385732 | Loss v 0.000783 | Compact 4.160218 | SPP 0.000000 | Energy 0.775714 | Grad 0.2700 | LR 0.001000
+[2025-12-22 00:20:08,691::train::INFO] [Train] Iter 36400 | Loss 0.428423 | Loss pos 0.345658 | Loss v 0.000521 | Compact 10.226370 | SPP 0.000000 | Energy 1.490618 | Grad 0.3759 | LR 0.001000
+[2025-12-22 00:20:38,787::train::INFO] [Train] Iter 36600 | Loss 0.733668 | Loss pos 0.590135 | Loss v 0.001218 | Compact 7.260049 | SPP 0.000000 | Energy 0.650225 | Grad 0.4691 | LR 0.001000
+[2025-12-22 00:21:08,952::train::INFO] [Train] Iter 36800 | Loss 0.657976 | Loss pos 0.593091 | Loss v 0.000469 | Compact 5.999767 | SPP 0.000000 | Energy 0.835113 | Grad 0.2798 | LR 0.001000
+[2025-12-22 00:21:39,020::train::INFO] [Train] Iter 37000 | Loss 0.214480 | Loss pos 0.120677 | Loss v 0.000653 | Compact 9.509848 | SPP 0.000000 | Energy 1.598828 | Grad 0.6330 | LR 0.001000
+[2025-12-22 00:22:09,386::train::INFO] [Train] Iter 37200 | Loss 0.736477 | Loss pos 0.637463 | Loss v 0.000630 | Compact 11.995091 | SPP 0.000000 | Energy 1.242555 | Grad 0.2568 | LR 0.001000
+[2025-12-22 00:22:39,348::train::INFO] [Train] Iter 37400 | Loss 0.747840 | Loss pos 0.672521 | Loss v 0.000430 | Compact 10.788547 | SPP 0.000000 | Energy 0.861983 | Grad 0.6694 | LR 0.001000
+[2025-12-22 00:23:09,087::train::INFO] [Train] Iter 37600 | Loss 0.591367 | Loss pos 0.503824 | Loss v 0.000724 | Compact 5.041540 | SPP 0.000000 | Energy 0.935797 | Grad 0.2947 | LR 0.001000
+[2025-12-22 00:23:39,107::train::INFO] [Train] Iter 37800 | Loss 0.841360 | Loss pos 0.760533 | Loss v 0.000607 | Compact 6.720131 | SPP 0.000000 | Energy 1.049565 | Grad 0.7359 | LR 0.001000
+[2025-12-22 00:24:09,232::train::INFO] [Train] Iter 38000 | Loss 1.024424 | Loss pos 0.912733 | Loss v 0.000952 | Compact 5.482940 | SPP 0.000000 | Energy 0.920356 | Grad 0.8280 | LR 0.001000
+[2025-12-22 00:30:01,693::train::INFO] [Validate] Iter 38000 | Loss 0.816049 | Loss pos 0.730914 | Loss v 0.611830 e-3 | Avg atom auroc 0.936063 | Compact 7.983995 | SPP 0.000000
+[2025-12-22 00:30:01,706::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 00:30:32,149::train::INFO] [Train] Iter 38200 | Loss 1.773683 | Loss pos 1.720651 | Loss v 0.000502 | Compact 0.936945 | SPP 0.000000 | Energy 0.734631 | Grad 0.3608 | LR 0.001000
+[2025-12-22 00:31:02,601::train::INFO] [Train] Iter 38400 | Loss 1.183666 | Loss pos 1.088413 | Loss v 0.000791 | Compact 5.368857 | SPP 0.000000 | Energy 0.751564 | Grad 0.8547 | LR 0.001000
+[2025-12-22 00:31:33,126::train::INFO] [Train] Iter 38600 | Loss 0.969038 | Loss pos 0.827550 | Loss v 0.001035 | Compact 12.678658 | SPP 0.000000 | Energy 0.834239 | Grad 0.7651 | LR 0.001000
+[2025-12-22 00:32:04,010::train::INFO] [Train] Iter 38800 | Loss 1.117178 | Loss pos 0.997185 | Loss v 0.001112 | Compact 2.923347 | SPP 0.000000 | Energy 1.269294 | Grad 0.6147 | LR 0.001000
+[2025-12-22 00:32:34,655::train::INFO] [Train] Iter 39000 | Loss 1.218155 | Loss pos 1.147466 | Loss v 0.000523 | Compact 6.119613 | SPP 0.000000 | Energy 0.715014 | Grad 0.5230 | LR 0.001000
+[2025-12-22 00:33:05,106::train::INFO] [Train] Iter 39200 | Loss 0.337815 | Loss pos 0.218211 | Loss v 0.000851 | Compact 11.511490 | SPP 0.000000 | Energy 1.046526 | Grad 0.5221 | LR 0.001000
+[2025-12-22 00:33:35,492::train::INFO] [Train] Iter 39400 | Loss 1.034734 | Loss pos 0.955760 | Loss v 0.000701 | Compact 2.945261 | SPP 0.000000 | Energy 0.558060 | Grad 1.5327 | LR 0.001000
+[2025-12-22 00:34:05,849::train::INFO] [Train] Iter 39600 | Loss 0.982349 | Loss pos 0.873409 | Loss v 0.000959 | Compact 4.362367 | SPP 0.000000 | Energy 0.901054 | Grad 1.2387 | LR 0.001000
+[2025-12-22 00:34:36,492::train::INFO] [Train] Iter 39800 | Loss 0.246368 | Loss pos 0.139575 | Loss v 0.000691 | Compact 12.556837 | SPP 0.000000 | Energy 1.449503 | Grad 0.4486 | LR 0.001000
+[2025-12-22 00:35:06,745::train::INFO] [Train] Iter 40000 | Loss 1.756092 | Loss pos 1.695231 | Loss v 0.000523 | Compact 2.860960 | SPP 0.000000 | Energy 0.929494 | Grad 0.7482 | LR 0.001000
+[2025-12-22 00:41:05,385::train::INFO] [Validate] Iter 40000 | Loss 0.811660 | Loss pos 0.727191 | Loss v 0.597911 e-3 | Avg atom auroc 0.935976 | Compact 8.225816 | SPP 0.000000
+[2025-12-22 00:41:05,401::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 00:41:36,276::train::INFO] [Train] Iter 40200 | Loss 0.928447 | Loss pos 0.849159 | Loss v 0.000650 | Compact 4.760128 | SPP 0.000000 | Energy 0.724699 | Grad 0.6024 | LR 0.001000
+[2025-12-22 00:42:06,116::train::INFO] [Train] Iter 40400 | Loss 0.739567 | Loss pos 0.640175 | Loss v 0.000873 | Compact 4.041549 | SPP 0.000000 | Energy 0.598717 | Grad 0.4489 | LR 0.001000
+[2025-12-22 00:42:36,250::train::INFO] [Train] Iter 40600 | Loss 0.569633 | Loss pos 0.493814 | Loss v 0.000374 | Compact 12.809962 | SPP 0.000000 | Energy 0.867194 | Grad 0.5051 | LR 0.001000
+[2025-12-22 00:43:06,923::train::INFO] [Train] Iter 40800 | Loss 0.444188 | Loss pos 0.335865 | Loss v 0.001008 | Compact 2.505995 | SPP 0.000000 | Energy 0.590728 | Grad 0.6412 | LR 0.001000
+[2025-12-22 00:43:38,224::train::INFO] [Train] Iter 41000 | Loss 1.172210 | Loss pos 1.051793 | Loss v 0.001045 | Compact 5.299812 | SPP 0.000000 | Energy 0.794294 | Grad 0.6141 | LR 0.001000
+[2025-12-22 00:44:09,403::train::INFO] [Train] Iter 41200 | Loss 0.606394 | Loss pos 0.529521 | Loss v 0.000451 | Compact 10.590290 | SPP 0.000000 | Energy 0.956849 | Grad 0.6272 | LR 0.001000
+[2025-12-22 00:44:40,288::train::INFO] [Train] Iter 41400 | Loss 0.650859 | Loss pos 0.554830 | Loss v 0.000743 | Compact 7.228182 | SPP 0.000000 | Energy 0.790227 | Grad 0.2902 | LR 0.001000
+[2025-12-22 00:45:11,103::train::INFO] [Train] Iter 41600 | Loss 0.266699 | Loss pos 0.190446 | Loss v 0.000448 | Compact 10.488012 | SPP 0.000000 | Energy 0.932068 | Grad 0.1689 | LR 0.001000
+[2025-12-22 00:45:41,695::train::INFO] [Train] Iter 41800 | Loss 1.671468 | Loss pos 1.591967 | Loss v 0.000674 | Compact 4.030337 | SPP 0.000000 | Energy 0.592960 | Grad 0.7889 | LR 0.001000
+[2025-12-22 00:46:12,444::train::INFO] [Train] Iter 42000 | Loss 1.004019 | Loss pos 0.903152 | Loss v 0.000804 | Compact 6.837159 | SPP 0.000000 | Energy 0.894987 | Grad 0.9239 | LR 0.001000
+[2025-12-22 00:52:05,173::train::INFO] [Validate] Iter 42000 | Loss 0.816515 | Loss pos 0.732223 | Loss v 0.601323 e-3 | Avg atom auroc 0.937450 | Compact 8.053304 | SPP 0.000000
+[2025-12-22 00:52:05,186::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 00:52:36,153::train::INFO] [Train] Iter 42200 | Loss 0.634197 | Loss pos 0.514022 | Loss v 0.000830 | Compact 12.393339 | SPP 0.000000 | Energy 0.929026 | Grad 0.7855 | LR 0.001000
+[2025-12-22 00:53:06,562::train::INFO] [Train] Iter 42400 | Loss 0.782224 | Loss pos 0.730874 | Loss v 0.000200 | Compact 10.446724 | SPP 0.000000 | Energy 0.841534 | Grad 0.3638 | LR 0.001000
+[2025-12-22 00:53:37,012::train::INFO] [Train] Iter 42600 | Loss 0.909003 | Loss pos 0.789572 | Loss v 0.001029 | Compact 5.494178 | SPP 0.000000 | Energy 0.854694 | Grad 0.2954 | LR 0.001000
+[2025-12-22 00:54:07,645::train::INFO] [Train] Iter 42800 | Loss 0.838751 | Loss pos 0.734460 | Loss v 0.000949 | Compact 3.120416 | SPP 0.000000 | Energy 1.163721 | Grad 0.4499 | LR 0.001000
+[2025-12-22 00:54:38,561::train::INFO] [Train] Iter 43000 | Loss 0.650079 | Loss pos 0.545724 | Loss v 0.000782 | Compact 8.713186 | SPP 0.000000 | Energy 0.884840 | Grad 0.9664 | LR 0.001000
+[2025-12-22 00:55:09,503::train::INFO] [Train] Iter 43200 | Loss 0.657806 | Loss pos 0.586794 | Loss v 0.000503 | Compact 6.889120 | SPP 0.000000 | Energy 0.883591 | Grad 0.2178 | LR 0.001000
+[2025-12-22 00:55:40,684::train::INFO] [Train] Iter 43400 | Loss 0.501128 | Loss pos 0.405890 | Loss v 0.000579 | Compact 12.430183 | SPP 0.000000 | Energy 1.176995 | Grad 0.5352 | LR 0.001000
+[2025-12-22 00:56:11,210::train::INFO] [Train] Iter 43600 | Loss 0.325873 | Loss pos 0.241812 | Loss v 0.000505 | Compact 11.177000 | SPP 0.000000 | Energy 1.125755 | Grad 0.2403 | LR 0.001000
+[2025-12-22 00:56:42,177::train::INFO] [Train] Iter 43800 | Loss 0.417514 | Loss pos 0.300253 | Loss v 0.000933 | Compact 7.979639 | SPP 0.000000 | Energy 0.995602 | Grad 0.5791 | LR 0.001000
+[2025-12-22 00:57:13,050::train::INFO] [Train] Iter 44000 | Loss 0.825123 | Loss pos 0.721990 | Loss v 0.000900 | Compact 4.387481 | SPP 0.000000 | Energy 0.731683 | Grad 0.8934 | LR 0.001000
+[2025-12-22 01:03:05,559::train::INFO] [Validate] Iter 44000 | Loss 0.823115 | Loss pos 0.740059 | Loss v 0.592674 e-3 | Avg atom auroc 0.936110 | Compact 7.929540 | SPP 0.000000
+[2025-12-22 01:03:05,574::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 01:03:37,202::train::INFO] [Train] Iter 44200 | Loss 0.196497 | Loss pos 0.140251 | Loss v 0.000293 | Compact 8.973858 | SPP 0.000000 | Energy 1.095198 | Grad 0.1180 | LR 0.001000
+[2025-12-22 01:04:08,599::train::INFO] [Train] Iter 44400 | Loss 0.660651 | Loss pos 0.637052 | Loss v 0.000020 | Compact 7.195527 | SPP 0.000000 | Energy 0.941667 | Grad 0.3326 | LR 0.001000
+[2025-12-22 01:04:39,681::train::INFO] [Train] Iter 44600 | Loss 0.212563 | Loss pos 0.171913 | Loss v 0.000174 | Compact 7.741589 | SPP 0.000000 | Energy 0.717371 | Grad 0.3622 | LR 0.001000
+[2025-12-22 01:05:10,483::train::INFO] [Train] Iter 44800 | Loss 0.536978 | Loss pos 0.411497 | Loss v 0.001071 | Compact 6.117105 | SPP 0.000000 | Energy 0.723474 | Grad 1.3945 | LR 0.001000
+[2025-12-22 01:05:41,289::train::INFO] [Train] Iter 45000 | Loss 0.336679 | Loss pos 0.262318 | Loss v 0.000485 | Compact 8.603953 | SPP 0.000000 | Energy 0.981419 | Grad 0.3911 | LR 0.001000
+[2025-12-22 01:06:12,175::train::INFO] [Train] Iter 45200 | Loss 1.744780 | Loss pos 1.688094 | Loss v 0.000486 | Compact 2.698998 | SPP 0.000000 | Energy 0.728241 | Grad 0.4470 | LR 0.001000
+[2025-12-22 01:06:43,278::train::INFO] [Train] Iter 45400 | Loss 0.493387 | Loss pos 0.405976 | Loss v 0.000612 | Compact 8.724761 | SPP 0.000000 | Energy 1.082796 | Grad 0.4616 | LR 0.001000
+[2025-12-22 01:07:14,281::train::INFO] [Train] Iter 45600 | Loss 0.206166 | Loss pos 0.143747 | Loss v 0.000345 | Compact 9.293902 | SPP 0.000000 | Energy 0.626216 | Grad 0.3826 | LR 0.001000
+[2025-12-22 01:07:46,056::train::INFO] [Train] Iter 45800 | Loss 0.279978 | Loss pos 0.180799 | Loss v 0.000568 | Compact 14.115261 | SPP 0.000000 | Energy 0.944055 | Grad 0.3522 | LR 0.001000
+[2025-12-22 01:08:17,451::train::INFO] [Train] Iter 46000 | Loss 0.490467 | Loss pos 0.415212 | Loss v 0.000611 | Compact 4.712601 | SPP 0.000000 | Energy 0.865166 | Grad 0.2446 | LR 0.001000
+[2025-12-22 01:14:11,935::train::INFO] [Validate] Iter 46000 | Loss 0.811416 | Loss pos 0.725399 | Loss v 0.616763 e-3 | Avg atom auroc 0.937997 | Compact 8.113728 | SPP 0.000000
+[2025-12-22 01:14:11,950::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 01:14:42,586::train::INFO] [Train] Iter 46200 | Loss 0.766384 | Loss pos 0.710021 | Loss v 0.000271 | Compact 9.739868 | SPP 0.000000 | Energy 0.701783 | Grad 1.3470 | LR 0.001000
+[2025-12-22 01:15:13,762::train::INFO] [Train] Iter 46400 | Loss 1.311514 | Loss pos 1.062374 | Loss v 0.002408 | Compact 2.768186 | SPP 0.000000 | Energy 0.965893 | Grad 3.6665 | LR 0.001000
+[2025-12-22 01:15:44,462::train::INFO] [Train] Iter 46600 | Loss 0.686255 | Loss pos 0.597868 | Loss v 0.000762 | Compact 4.068942 | SPP 0.000000 | Energy 0.575710 | Grad 0.3710 | LR 0.001000
+[2025-12-22 01:16:15,173::train::INFO] [Train] Iter 46800 | Loss 0.196446 | Loss pos 0.103378 | Loss v 0.000602 | Compact 10.951456 | SPP 0.000000 | Energy 0.777362 | Grad 0.3903 | LR 0.001000
+[2025-12-22 01:16:45,973::train::INFO] [Train] Iter 47000 | Loss 0.931516 | Loss pos 0.844616 | Loss v 0.000697 | Compact 5.747230 | SPP 0.000000 | Energy 0.976772 | Grad 0.2724 | LR 0.001000
+[2025-12-22 01:17:17,118::train::INFO] [Train] Iter 47200 | Loss 0.992801 | Loss pos 0.912848 | Loss v 0.000528 | Compact 9.042346 | SPP 0.000000 | Energy 0.920263 | Grad 0.8461 | LR 0.001000
+[2025-12-22 01:17:48,554::train::INFO] [Train] Iter 47400 | Loss 0.319346 | Loss pos 0.261331 | Loss v 0.000333 | Compact 8.249674 | SPP 0.000000 | Energy 1.534302 | Grad 0.3102 | LR 0.001000
+[2025-12-22 01:18:19,598::train::INFO] [Train] Iter 47600 | Loss 1.949513 | Loss pos 1.894391 | Loss v 0.000415 | Compact 4.547010 | SPP 0.000000 | Energy 0.757633 | Grad 0.6662 | LR 0.001000
+[2025-12-22 01:18:50,858::train::INFO] [Train] Iter 47800 | Loss 1.382994 | Loss pos 1.294770 | Loss v 0.000661 | Compact 7.386271 | SPP 0.000000 | Energy 0.834750 | Grad 0.6299 | LR 0.001000
+[2025-12-22 01:19:22,152::train::INFO] [Train] Iter 48000 | Loss 1.228399 | Loss pos 1.141206 | Loss v 0.000577 | Compact 9.832529 | SPP 0.000000 | Energy 0.840094 | Grad 0.6923 | LR 0.001000
+[2025-12-22 01:25:15,393::train::INFO] [Validate] Iter 48000 | Loss 0.809595 | Loss pos 0.726770 | Loss v 0.589015 e-3 | Avg atom auroc 0.939255 | Compact 7.974318 | SPP 0.000000
+[2025-12-22 01:25:15,408::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 01:25:46,402::train::INFO] [Train] Iter 48200 | Loss 1.064644 | Loss pos 0.967389 | Loss v 0.000852 | Compact 4.023069 | SPP 0.000000 | Energy 1.377850 | Grad 0.3408 | LR 0.001000
+[2025-12-22 01:26:17,469::train::INFO] [Train] Iter 48400 | Loss 0.832966 | Loss pos 0.702612 | Loss v 0.000986 | Compact 10.588430 | SPP 0.000000 | Energy 2.021399 | Grad 0.2913 | LR 0.001000
+[2025-12-22 01:26:48,591::train::INFO] [Train] Iter 48600 | Loss 0.839408 | Loss pos 0.746664 | Loss v 0.000713 | Compact 7.159869 | SPP 0.000000 | Energy 0.801879 | Grad 0.4622 | LR 0.001000
+[2025-12-22 01:27:19,558::train::INFO] [Train] Iter 48800 | Loss 0.204361 | Loss pos 0.098519 | Loss v 0.000718 | Compact 11.360752 | SPP 0.000000 | Energy 0.906963 | Grad 0.2528 | LR 0.001000
+[2025-12-22 01:27:50,370::train::INFO] [Train] Iter 49000 | Loss 1.327035 | Loss pos 1.245123 | Loss v 0.000643 | Compact 5.869020 | SPP 0.000000 | Energy 0.751568 | Grad 0.5483 | LR 0.001000
+[2025-12-22 01:28:21,077::train::INFO] [Train] Iter 49200 | Loss 1.085352 | Loss pos 0.999662 | Loss v 0.000739 | Compact 3.932222 | SPP 0.000000 | Energy 0.732094 | Grad 0.7931 | LR 0.001000
+[2025-12-22 01:28:51,479::train::INFO] [Train] Iter 49400 | Loss 0.262593 | Loss pos 0.149315 | Loss v 0.000873 | Compact 8.653313 | SPP 0.000000 | Energy 0.665706 | Grad 0.2645 | LR 0.001000
+[2025-12-22 01:29:22,048::train::INFO] [Train] Iter 49600 | Loss 0.684955 | Loss pos 0.605577 | Loss v 0.000599 | Compact 6.492157 | SPP 0.000000 | Energy 0.923383 | Grad 0.3646 | LR 0.001000
+[2025-12-22 01:29:52,712::train::INFO] [Train] Iter 49800 | Loss 0.589948 | Loss pos 0.543247 | Loss v 0.000383 | Compact 2.793781 | SPP 0.000000 | Energy 1.122267 | Grad 0.3407 | LR 0.001000
+[2025-12-22 01:30:23,258::train::INFO] [Train] Iter 50000 | Loss 0.967794 | Loss pos 0.913204 | Loss v 0.000312 | Compact 7.780854 | SPP 0.000000 | Energy 0.588639 | Grad 0.7631 | LR 0.001000
+[2025-12-22 01:36:16,428::train::INFO] [Validate] Iter 50000 | Loss 0.808739 | Loss pos 0.724534 | Loss v 0.597346 e-3 | Avg atom auroc 0.933605 | Compact 8.157058 | SPP 0.000000
+[2025-12-22 01:36:16,443::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 01:36:47,308::train::INFO] [Train] Iter 50200 | Loss 0.760372 | Loss pos 0.689716 | Loss v 0.000521 | Compact 6.188543 | SPP 0.000000 | Energy 0.501264 | Grad 0.6099 | LR 0.001000
+[2025-12-22 01:37:17,925::train::INFO] [Train] Iter 50400 | Loss 0.702240 | Loss pos 0.586751 | Loss v 0.000883 | Compact 9.076961 | SPP 0.000000 | Energy 0.703570 | Grad 1.3538 | LR 0.001000
+[2025-12-22 01:37:49,079::train::INFO] [Train] Iter 50600 | Loss 0.389666 | Loss pos 0.297370 | Loss v 0.000744 | Compact 5.968685 | SPP 0.000000 | Energy 0.774065 | Grad 0.3268 | LR 0.001000
+[2025-12-22 01:38:20,124::train::INFO] [Train] Iter 50800 | Loss 0.298755 | Loss pos 0.214665 | Loss v 0.000421 | Compact 13.983130 | SPP 0.000000 | Energy 1.017114 | Grad 0.1828 | LR 0.001000
+[2025-12-22 01:38:51,023::train::INFO] [Train] Iter 51000 | Loss 0.270027 | Loss pos 0.216713 | Loss v 0.000342 | Compact 6.360215 | SPP 0.000000 | Energy 0.760865 | Grad 0.4232 | LR 0.001000
+[2025-12-22 01:39:21,634::train::INFO] [Train] Iter 51200 | Loss 0.327486 | Loss pos 0.215797 | Loss v 0.000744 | Compact 12.416070 | SPP 0.000000 | Energy 0.940027 | Grad 0.3654 | LR 0.001000
+[2025-12-22 01:39:52,327::train::INFO] [Train] Iter 51400 | Loss 1.284941 | Loss pos 1.176441 | Loss v 0.000907 | Compact 5.944220 | SPP 0.000000 | Energy 1.481442 | Grad 0.4563 | LR 0.001000
+[2025-12-22 01:40:23,067::train::INFO] [Train] Iter 51600 | Loss 1.248009 | Loss pos 1.145143 | Loss v 0.000836 | Compact 6.414639 | SPP 0.000000 | Energy 0.783902 | Grad 0.6818 | LR 0.001000
+[2025-12-22 01:40:53,752::train::INFO] [Train] Iter 51800 | Loss 1.186884 | Loss pos 1.056976 | Loss v 0.001223 | Compact 2.549196 | SPP 0.000000 | Energy 0.540753 | Grad 0.4591 | LR 0.001000
+[2025-12-22 01:41:24,915::train::INFO] [Train] Iter 52000 | Loss 0.789338 | Loss pos 0.628503 | Loss v 0.001387 | Compact 7.387931 | SPP 0.000000 | Energy 1.015435 | Grad 0.6468 | LR 0.001000
+[2025-12-22 01:47:18,558::train::INFO] [Validate] Iter 52000 | Loss 0.820061 | Loss pos 0.735920 | Loss v 0.601965 e-3 | Avg atom auroc 0.939299 | Compact 7.981309 | SPP 0.000000
+[2025-12-22 01:47:18,573::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 01:47:49,392::train::INFO] [Train] Iter 52200 | Loss 1.142387 | Loss pos 1.055532 | Loss v 0.000785 | Compact 2.778597 | SPP 0.000000 | Energy 1.035906 | Grad 0.7981 | LR 0.001000
+[2025-12-22 01:48:20,635::train::INFO] [Train] Iter 52400 | Loss 0.721738 | Loss pos 0.620994 | Loss v 0.000692 | Compact 10.511271 | SPP 0.000000 | Energy 1.008158 | Grad 0.3636 | LR 0.001000
+[2025-12-22 01:48:51,525::train::INFO] [Train] Iter 52600 | Loss 1.083943 | Loss pos 1.011733 | Loss v 0.000576 | Compact 4.875564 | SPP 0.000000 | Energy 0.837073 | Grad 0.6221 | LR 0.001000
+[2025-12-22 01:49:22,119::train::INFO] [Train] Iter 52800 | Loss 0.425114 | Loss pos 0.337046 | Loss v 0.000501 | Compact 12.662508 | SPP 0.000000 | Energy 0.911902 | Grad 0.2600 | LR 0.001000
+[2025-12-22 01:49:53,046::train::INFO] [Train] Iter 53000 | Loss 0.399885 | Loss pos 0.361214 | Loss v 0.000098 | Compact 9.638819 | SPP 0.000000 | Energy 1.036063 | Grad 0.3352 | LR 0.001000
+[2025-12-22 01:50:23,736::train::INFO] [Train] Iter 53200 | Loss 0.980116 | Loss pos 0.859449 | Loss v 0.000947 | Compact 8.665986 | SPP 0.000000 | Energy 0.953937 | Grad 0.5184 | LR 0.001000
+[2025-12-22 01:50:54,813::train::INFO] [Train] Iter 53400 | Loss 0.345729 | Loss pos 0.248156 | Loss v 0.000590 | Compact 12.842249 | SPP 0.000000 | Energy 0.627680 | Grad 0.4167 | LR 0.001000
+[2025-12-22 01:51:26,067::train::INFO] [Train] Iter 53600 | Loss 0.350717 | Loss pos 0.277936 | Loss v 0.000457 | Compact 9.027396 | SPP 0.000000 | Energy 0.837727 | Grad 0.4437 | LR 0.001000
+[2025-12-22 01:51:56,516::train::INFO] [Train] Iter 53800 | Loss 0.801765 | Loss pos 0.742773 | Loss v 0.000179 | Compact 13.683569 | SPP 0.000000 | Energy 0.977209 | Grad 1.1174 | LR 0.001000
+[2025-12-22 01:52:27,150::train::INFO] [Train] Iter 54000 | Loss 1.004494 | Loss pos 0.903104 | Loss v 0.000889 | Compact 4.178149 | SPP 0.000000 | Energy 0.843216 | Grad 0.2511 | LR 0.001000
+[2025-12-22 01:58:20,714::train::INFO] [Validate] Iter 54000 | Loss 0.809992 | Loss pos 0.726706 | Loss v 0.593143 e-3 | Avg atom auroc 0.942229 | Compact 7.990494 | SPP 0.000000
+[2025-12-22 01:58:20,728::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 01:58:51,715::train::INFO] [Train] Iter 54200 | Loss 0.420648 | Loss pos 0.285000 | Loss v 0.001232 | Compact 4.160912 | SPP 0.000000 | Energy 0.553382 | Grad 0.4010 | LR 0.001000
+[2025-12-22 01:59:22,938::train::INFO] [Train] Iter 54400 | Loss 0.154081 | Loss pos 0.095239 | Loss v 0.000364 | Compact 7.486499 | SPP 0.000000 | Energy 0.895417 | Grad 0.2101 | LR 0.001000
+[2025-12-22 01:59:54,055::train::INFO] [Train] Iter 54600 | Loss 0.744808 | Loss pos 0.655075 | Loss v 0.000624 | Compact 9.102395 | SPP 0.000000 | Energy 0.753121 | Grad 0.2329 | LR 0.001000
+[2025-12-22 02:00:25,368::train::INFO] [Train] Iter 54800 | Loss 1.038737 | Loss pos 0.912359 | Loss v 0.001053 | Compact 7.022767 | SPP 0.000000 | Energy 1.115505 | Grad 0.8049 | LR 0.001000
+[2025-12-22 02:00:56,907::train::INFO] [Train] Iter 55000 | Loss 0.934127 | Loss pos 0.826301 | Loss v 0.000864 | Compact 7.130948 | SPP 0.000000 | Energy 0.824369 | Grad 0.5020 | LR 0.001000
+[2025-12-22 02:01:28,513::train::INFO] [Train] Iter 55200 | Loss 0.739109 | Loss pos 0.614746 | Loss v 0.000961 | Compact 9.417034 | SPP 0.000000 | Energy 1.294010 | Grad 0.2065 | LR 0.001000
+[2025-12-22 02:01:59,387::train::INFO] [Train] Iter 55400 | Loss 1.090654 | Loss pos 0.968546 | Loss v 0.000925 | Compact 9.885535 | SPP 0.000000 | Energy 0.838465 | Grad 0.4618 | LR 0.001000
+[2025-12-22 02:02:30,151::train::INFO] [Train] Iter 55600 | Loss 0.528831 | Loss pos 0.432791 | Loss v 0.000723 | Compact 7.922449 | SPP 0.000000 | Energy 0.944700 | Grad 0.3239 | LR 0.001000
+[2025-12-22 02:03:01,256::train::INFO] [Train] Iter 55800 | Loss 0.409387 | Loss pos 0.362622 | Loss v 0.000312 | Compact 5.190041 | SPP 0.000000 | Energy 0.687223 | Grad 0.6463 | LR 0.001000
+[2025-12-22 02:03:31,748::train::INFO] [Train] Iter 56000 | Loss 0.879329 | Loss pos 0.836189 | Loss v 0.000210 | Compact 7.386127 | SPP 0.000000 | Energy 0.704744 | Grad 0.4579 | LR 0.001000
+[2025-12-22 02:09:26,321::train::INFO] [Validate] Iter 56000 | Loss 0.804711 | Loss pos 0.722575 | Loss v 0.577105 e-3 | Avg atom auroc 0.939004 | Compact 8.141813 | SPP 0.000000
+[2025-12-22 02:09:26,335::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 02:09:57,026::train::INFO] [Train] Iter 56200 | Loss 0.449831 | Loss pos 0.369536 | Loss v 0.000555 | Compact 8.251063 | SPP 0.000000 | Energy 0.797477 | Grad 0.5624 | LR 0.001000
+[2025-12-22 02:10:27,688::train::INFO] [Train] Iter 56400 | Loss 1.064457 | Loss pos 0.982777 | Loss v 0.000521 | Compact 9.856579 | SPP 0.000000 | Energy 1.549062 | Grad 0.7999 | LR 0.001000
+[2025-12-22 02:10:58,141::train::INFO] [Train] Iter 56600 | Loss 1.230646 | Loss pos 1.145226 | Loss v 0.000723 | Compact 4.368012 | SPP 0.000000 | Energy 0.655391 | Grad 0.4816 | LR 0.001000
+[2025-12-22 02:11:28,833::train::INFO] [Train] Iter 56800 | Loss 0.779724 | Loss pos 0.651407 | Loss v 0.000878 | Compact 13.494146 | SPP 0.000000 | Energy 1.231319 | Grad 0.5561 | LR 0.001000
+[2025-12-22 02:11:59,348::train::INFO] [Train] Iter 57000 | Loss 0.597269 | Loss pos 0.509160 | Loss v 0.000538 | Compact 11.433607 | SPP 0.000000 | Energy 1.014934 | Grad 0.3539 | LR 0.001000
+[2025-12-22 02:12:30,485::train::INFO] [Train] Iter 57200 | Loss 0.181301 | Loss pos 0.111676 | Loss v 0.000342 | Compact 11.801685 | SPP 0.000000 | Energy 0.888932 | Grad 0.1387 | LR 0.001000
+[2025-12-22 02:13:00,921::train::INFO] [Train] Iter 57400 | Loss 0.216378 | Loss pos 0.141793 | Loss v 0.000380 | Compact 12.191263 | SPP 0.000000 | Energy 0.861288 | Grad 0.2798 | LR 0.001000
+[2025-12-22 02:13:31,676::train::INFO] [Train] Iter 57600 | Loss 1.210465 | Loss pos 1.090941 | Loss v 0.001026 | Compact 5.625826 | SPP 0.000000 | Energy 1.124478 | Grad 0.5292 | LR 0.001000
+[2025-12-22 02:14:02,594::train::INFO] [Train] Iter 57800 | Loss 1.336368 | Loss pos 1.239461 | Loss v 0.000796 | Compact 5.774192 | SPP 0.000000 | Energy 0.776639 | Grad 1.3977 | LR 0.001000
+[2025-12-22 02:14:33,257::train::INFO] [Train] Iter 58000 | Loss 1.295454 | Loss pos 1.210634 | Loss v 0.000516 | Compact 11.068186 | SPP 0.000000 | Energy 1.109423 | Grad 0.9346 | LR 0.001000
+[2025-12-22 02:20:28,041::train::INFO] [Validate] Iter 58000 | Loss 0.805862 | Loss pos 0.722506 | Loss v 0.591288 e-3 | Avg atom auroc 0.934692 | Compact 8.075801 | SPP 0.000000
+[2025-12-22 02:20:28,055::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 02:20:59,109::train::INFO] [Train] Iter 58200 | Loss 1.338923 | Loss pos 1.265161 | Loss v 0.000576 | Compact 5.393465 | SPP 0.000000 | Energy 0.671184 | Grad 0.3691 | LR 0.001000
+[2025-12-22 02:21:29,850::train::INFO] [Train] Iter 58400 | Loss 0.789361 | Loss pos 0.684471 | Loss v 0.000756 | Compact 9.775446 | SPP 0.000000 | Energy 1.019876 | Grad 0.3906 | LR 0.001000
+[2025-12-22 02:22:00,350::train::INFO] [Train] Iter 58600 | Loss 0.531950 | Loss pos 0.451410 | Loss v 0.000642 | Compact 5.440854 | SPP 0.000000 | Energy 1.341763 | Grad 0.7436 | LR 0.001000
+[2025-12-22 02:22:31,290::train::INFO] [Train] Iter 58800 | Loss 0.412649 | Loss pos 0.311814 | Loss v 0.000659 | Compact 11.629781 | SPP 0.000000 | Energy 1.028328 | Grad 0.6078 | LR 0.001000
+[2025-12-22 02:23:02,161::train::INFO] [Train] Iter 59000 | Loss 0.800711 | Loss pos 0.758797 | Loss v 0.000265 | Compact 5.142886 | SPP 0.000000 | Energy 0.709244 | Grad 0.5066 | LR 0.001000
+[2025-12-22 02:23:32,735::train::INFO] [Train] Iter 59200 | Loss 0.412721 | Loss pos 0.332627 | Loss v 0.000404 | Compact 13.227242 | SPP 0.000000 | Energy 0.714035 | Grad 0.5160 | LR 0.001000
+[2025-12-22 02:24:02,995::train::INFO] [Train] Iter 59400 | Loss 0.835619 | Loss pos 0.762109 | Loss v 0.000640 | Compact 3.174997 | SPP 0.000000 | Energy 0.762101 | Grad 0.5903 | LR 0.001000
+[2025-12-22 02:24:33,547::train::INFO] [Train] Iter 59600 | Loss 0.793121 | Loss pos 0.723870 | Loss v 0.000301 | Compact 13.063350 | SPP 0.000000 | Energy 1.621542 | Grad 0.4084 | LR 0.001000
+[2025-12-22 02:25:04,150::train::INFO] [Train] Iter 59800 | Loss 0.988295 | Loss pos 0.884742 | Loss v 0.000806 | Compact 7.652521 | SPP 0.000000 | Energy 0.885825 | Grad 0.9979 | LR 0.001000
+[2025-12-22 02:25:35,168::train::INFO] [Train] Iter 60000 | Loss 0.696749 | Loss pos 0.622934 | Loss v 0.000609 | Compact 4.308199 | SPP 0.000000 | Energy 1.158442 | Grad 0.4601 | LR 0.001000
+[2025-12-22 02:31:27,756::train::INFO] [Validate] Iter 60000 | Loss 0.818654 | Loss pos 0.734205 | Loss v 0.601962 e-3 | Avg atom auroc 0.937661 | Compact 8.084404 | SPP 0.000000
+[2025-12-22 02:31:27,769::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 02:31:59,063::train::INFO] [Train] Iter 60200 | Loss 0.497229 | Loss pos 0.447059 | Loss v 0.000085 | Compact 13.898118 | SPP 0.000000 | Energy 0.898384 | Grad 0.2553 | LR 0.001000
+[2025-12-22 02:32:30,168::train::INFO] [Train] Iter 60400 | Loss 0.619323 | Loss pos 0.537278 | Loss v 0.000549 | Compact 9.037188 | SPP 0.000000 | Energy 1.378388 | Grad 0.2737 | LR 0.001000
+[2025-12-22 02:33:01,327::train::INFO] [Train] Iter 60600 | Loss 1.140010 | Loss pos 1.042394 | Loss v 0.000778 | Compact 6.591700 | SPP 0.000000 | Energy 0.935270 | Grad 1.2318 | LR 0.001000
+[2025-12-22 02:33:32,236::train::INFO] [Train] Iter 60800 | Loss 0.872312 | Loss pos 0.842448 | Loss v 0.000142 | Compact 5.208590 | SPP 0.000000 | Energy 0.928801 | Grad 1.0064 | LR 0.001000
+[2025-12-22 02:34:02,929::train::INFO] [Train] Iter 61000 | Loss 0.872561 | Loss pos 0.807699 | Loss v 0.000436 | Compact 7.078162 | SPP 0.000000 | Energy 0.767303 | Grad 0.6205 | LR 0.001000
+[2025-12-22 02:34:34,213::train::INFO] [Train] Iter 61200 | Loss 0.417257 | Loss pos 0.294079 | Loss v 0.001033 | Compact 6.613415 | SPP 0.000000 | Energy 1.033116 | Grad 0.3665 | LR 0.001000
+[2025-12-22 02:35:04,726::train::INFO] [Train] Iter 61400 | Loss 0.905113 | Loss pos 0.807607 | Loss v 0.000771 | Compact 6.814283 | SPP 0.000000 | Energy 0.893236 | Grad 0.4115 | LR 0.001000
+[2025-12-22 02:35:35,329::train::INFO] [Train] Iter 61600 | Loss 0.516544 | Loss pos 0.452153 | Loss v 0.000398 | Compact 8.193271 | SPP 0.000000 | Energy 0.772268 | Grad 0.2740 | LR 0.001000
+[2025-12-22 02:36:06,212::train::INFO] [Train] Iter 61800 | Loss 1.080095 | Loss pos 1.011975 | Loss v 0.000559 | Compact 4.088931 | SPP 0.000000 | Energy 0.904573 | Grad 0.4081 | LR 0.001000
+[2025-12-22 02:36:37,666::train::INFO] [Train] Iter 62000 | Loss 0.875650 | Loss pos 0.830133 | Loss v 0.000181 | Compact 9.123193 | SPP 0.000000 | Energy 1.089233 | Grad 0.3826 | LR 0.001000
+[2025-12-22 02:42:32,600::train::INFO] [Validate] Iter 62000 | Loss 0.798349 | Loss pos 0.716592 | Loss v 0.573919 e-3 | Avg atom auroc 0.938895 | Compact 8.121719 | SPP 0.000000
+[2025-12-22 02:42:32,616::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 02:43:03,639::train::INFO] [Train] Iter 62200 | Loss 0.952102 | Loss pos 0.899242 | Loss v 0.000378 | Compact 5.019009 | SPP 0.000000 | Energy 0.817822 | Grad 0.2785 | LR 0.001000
+[2025-12-22 02:43:34,839::train::INFO] [Train] Iter 62400 | Loss 1.151564 | Loss pos 1.078293 | Loss v 0.000546 | Compact 6.214808 | SPP 0.000000 | Energy 0.713848 | Grad 0.7866 | LR 0.001000
+[2025-12-22 02:44:06,134::train::INFO] [Train] Iter 62600 | Loss 1.174863 | Loss pos 1.070516 | Loss v 0.000675 | Compact 12.276313 | SPP 0.000000 | Energy 1.002162 | Grad 0.4380 | LR 0.001000
+[2025-12-22 02:44:37,243::train::INFO] [Train] Iter 62800 | Loss 0.896971 | Loss pos 0.826073 | Loss v 0.000481 | Compact 7.610910 | SPP 0.000000 | Energy 0.864189 | Grad 0.3569 | LR 0.001000
+[2025-12-22 02:45:08,101::train::INFO] [Train] Iter 63000 | Loss 0.607977 | Loss pos 0.477403 | Loss v 0.001177 | Compact 4.291953 | SPP 0.000000 | Energy 0.796831 | Grad 0.5352 | LR 0.001000
+[2025-12-22 02:45:39,120::train::INFO] [Train] Iter 63200 | Loss 1.009476 | Loss pos 0.921196 | Loss v 0.000630 | Compact 8.413481 | SPP 0.000000 | Energy 0.930377 | Grad 0.3964 | LR 0.001000
+[2025-12-22 02:46:09,227::train::INFO] [Train] Iter 63400 | Loss 1.087170 | Loss pos 0.967426 | Loss v 0.000979 | Compact 7.282949 | SPP 0.000000 | Energy 0.757135 | Grad 0.8839 | LR 0.001000
+[2025-12-22 02:46:39,833::train::INFO] [Train] Iter 63600 | Loss 0.805277 | Loss pos 0.696471 | Loss v 0.000884 | Compact 6.787199 | SPP 0.000000 | Energy 0.594306 | Grad 0.5510 | LR 0.001000
+[2025-12-22 02:47:09,805::train::INFO] [Train] Iter 63800 | Loss 1.229989 | Loss pos 1.149218 | Loss v 0.000627 | Compact 6.032678 | SPP 0.000000 | Energy 0.776873 | Grad 0.5753 | LR 0.001000
+[2025-12-22 02:47:41,383::train::INFO] [Train] Iter 64000 | Loss 0.510756 | Loss pos 0.451520 | Loss v 0.000218 | Compact 12.486939 | SPP 0.000000 | Energy 0.836468 | Grad 0.1513 | LR 0.001000
+[2025-12-22 02:53:33,118::train::INFO] [Validate] Iter 64000 | Loss 0.795813 | Loss pos 0.713656 | Loss v 0.578906 e-3 | Avg atom auroc 0.940013 | Compact 8.088902 | SPP 0.000000
+[2025-12-22 02:53:33,131::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 02:54:04,368::train::INFO] [Train] Iter 64200 | Loss 1.222004 | Loss pos 1.139110 | Loss v 0.000691 | Compact 4.589268 | SPP 0.000000 | Energy 0.786777 | Grad 0.3214 | LR 0.001000
+[2025-12-22 02:54:35,344::train::INFO] [Train] Iter 64400 | Loss 0.879378 | Loss pos 0.795301 | Loss v 0.000681 | Compact 5.312453 | SPP 0.000000 | Energy 0.902474 | Grad 0.3469 | LR 0.001000
+[2025-12-22 02:55:06,012::train::INFO] [Train] Iter 64600 | Loss 0.589711 | Loss pos 0.437571 | Loss v 0.001057 | Compact 15.494442 | SPP 0.000000 | Energy 0.979452 | Grad 0.2082 | LR 0.001000
+[2025-12-22 02:55:36,651::train::INFO] [Train] Iter 64800 | Loss 0.729273 | Loss pos 0.647057 | Loss v 0.000626 | Compact 6.535555 | SPP 0.000000 | Energy 1.389868 | Grad 1.0102 | LR 0.001000
+[2025-12-22 02:56:07,726::train::INFO] [Train] Iter 65000 | Loss 0.121512 | Loss pos 0.077944 | Loss v 0.000126 | Compact 10.323432 | SPP 0.000000 | Energy 0.819343 | Grad 0.1977 | LR 0.001000
+[2025-12-22 02:56:38,770::train::INFO] [Train] Iter 65200 | Loss 0.518638 | Loss pos 0.421974 | Loss v 0.000756 | Compact 7.014332 | SPP 0.000000 | Energy 0.968228 | Grad 0.4808 | LR 0.001000
+[2025-12-22 02:57:10,068::train::INFO] [Train] Iter 65400 | Loss 0.241290 | Loss pos 0.163626 | Loss v 0.000318 | Compact 15.281055 | SPP 0.000000 | Energy 1.239436 | Grad 0.1810 | LR 0.001000
+[2025-12-22 02:57:40,833::train::INFO] [Train] Iter 65600 | Loss 0.332865 | Loss pos 0.236326 | Loss v 0.000717 | Compact 8.294613 | SPP 0.000000 | Energy 0.769709 | Grad 0.3711 | LR 0.001000
+[2025-12-22 02:58:11,994::train::INFO] [Train] Iter 65800 | Loss 0.649685 | Loss pos 0.555888 | Loss v 0.000589 | Compact 11.639198 | SPP 0.000000 | Energy 0.859576 | Grad 0.5094 | LR 0.001000
+[2025-12-22 02:58:43,320::train::INFO] [Train] Iter 66000 | Loss 0.294431 | Loss pos 0.232968 | Loss v 0.000342 | Compact 9.077204 | SPP 0.000000 | Energy 0.807174 | Grad 0.2449 | LR 0.001000
+[2025-12-22 03:04:35,943::train::INFO] [Validate] Iter 66000 | Loss 0.792819 | Loss pos 0.709388 | Loss v 0.593349 e-3 | Avg atom auroc 0.942885 | Compact 8.032289 | SPP 0.000000
+[2025-12-22 03:04:35,955::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 03:05:06,807::train::INFO] [Train] Iter 66200 | Loss 0.381940 | Loss pos 0.293868 | Loss v 0.000638 | Compact 8.080753 | SPP 0.000000 | Energy 0.893689 | Grad 0.2261 | LR 0.001000
+[2025-12-22 03:05:37,442::train::INFO] [Train] Iter 66400 | Loss 0.620844 | Loss pos 0.489829 | Loss v 0.000940 | Compact 12.353601 | SPP 0.000000 | Energy 0.897750 | Grad 0.3587 | LR 0.001000
+[2025-12-22 03:06:08,274::train::INFO] [Train] Iter 66600 | Loss 0.881534 | Loss pos 0.810542 | Loss v 0.000525 | Compact 6.168407 | SPP 0.000000 | Energy 0.826512 | Grad 0.2053 | LR 0.001000
+[2025-12-22 03:06:39,259::train::INFO] [Train] Iter 66800 | Loss 0.435453 | Loss pos 0.331962 | Loss v 0.000743 | Compact 9.746025 | SPP 0.000000 | Energy 0.945889 | Grad 0.6276 | LR 0.001000
+[2025-12-22 03:07:10,390::train::INFO] [Train] Iter 67000 | Loss 1.441103 | Loss pos 1.319692 | Loss v 0.001138 | Compact 2.527472 | SPP 0.000000 | Energy 0.872969 | Grad 0.4237 | LR 0.001000
+[2025-12-22 03:07:40,867::train::INFO] [Train] Iter 67200 | Loss 0.419989 | Loss pos 0.316154 | Loss v 0.000770 | Compact 8.936966 | SPP 0.000000 | Energy 1.461661 | Grad 0.4057 | LR 0.001000
+[2025-12-22 03:08:11,974::train::INFO] [Train] Iter 67400 | Loss 0.964502 | Loss pos 0.882676 | Loss v 0.000655 | Compact 5.443373 | SPP 0.000000 | Energy 0.782645 | Grad 0.5872 | LR 0.001000
+[2025-12-22 03:08:43,096::train::INFO] [Train] Iter 67600 | Loss 0.871037 | Loss pos 0.810091 | Loss v 0.000419 | Compact 6.345554 | SPP 0.000000 | Energy 0.957585 | Grad 0.4997 | LR 0.001000
+[2025-12-22 03:09:13,248::train::INFO] [Train] Iter 67800 | Loss 0.941350 | Loss pos 0.887500 | Loss v 0.000260 | Compact 9.299671 | SPP 0.000000 | Energy 0.983433 | Grad 0.4826 | LR 0.001000
+[2025-12-22 03:09:44,039::train::INFO] [Train] Iter 68000 | Loss 0.713252 | Loss pos 0.647878 | Loss v 0.000537 | Compact 3.883847 | SPP 0.000000 | Energy 1.386272 | Grad 0.3603 | LR 0.001000
+[2025-12-22 03:15:36,639::train::INFO] [Validate] Iter 68000 | Loss 0.812920 | Loss pos 0.729817 | Loss v 0.585837 e-3 | Avg atom auroc 0.940333 | Compact 8.173170 | SPP 0.000000
+[2025-12-22 03:15:36,651::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 03:16:07,952::train::INFO] [Train] Iter 68200 | Loss 1.636401 | Loss pos 1.535922 | Loss v 0.000865 | Compact 4.671264 | SPP 0.000000 | Energy 0.606693 | Grad 0.6863 | LR 0.001000
+[2025-12-22 03:16:38,979::train::INFO] [Train] Iter 68400 | Loss 1.096237 | Loss pos 1.036663 | Loss v 0.000452 | Compact 4.775029 | SPP 0.000000 | Energy 1.318262 | Grad 0.4205 | LR 0.001000
+[2025-12-22 03:17:10,150::train::INFO] [Train] Iter 68600 | Loss 0.587751 | Loss pos 0.519569 | Loss v 0.000324 | Compact 11.917105 | SPP 0.000000 | Energy 1.572356 | Grad 0.1906 | LR 0.001000
+[2025-12-22 03:17:40,861::train::INFO] [Train] Iter 68800 | Loss 0.703238 | Loss pos 0.620281 | Loss v 0.000666 | Compact 5.467488 | SPP 0.000000 | Energy 0.735981 | Grad 0.5684 | LR 0.001000
+[2025-12-22 03:18:11,711::train::INFO] [Train] Iter 69000 | Loss 0.721686 | Loss pos 0.644898 | Loss v 0.000624 | Compact 4.800503 | SPP 0.000000 | Energy 0.837130 | Grad 0.5647 | LR 0.001000
+[2025-12-22 03:18:43,157::train::INFO] [Train] Iter 69200 | Loss 0.330070 | Loss pos 0.224341 | Loss v 0.000673 | Compact 12.814337 | SPP 0.000000 | Energy 1.133559 | Grad 0.2877 | LR 0.001000
+[2025-12-22 03:19:14,465::train::INFO] [Train] Iter 69400 | Loss 0.565883 | Loss pos 0.495981 | Loss v 0.000444 | Compact 8.490232 | SPP 0.000000 | Energy 0.989641 | Grad 0.5012 | LR 0.001000
+[2025-12-22 03:19:45,842::train::INFO] [Train] Iter 69600 | Loss 1.763290 | Loss pos 1.680069 | Loss v 0.000770 | Compact 2.083686 | SPP 0.000000 | Energy 1.239494 | Grad 0.5581 | LR 0.001000
+[2025-12-22 03:20:17,090::train::INFO] [Train] Iter 69800 | Loss 1.452717 | Loss pos 1.276066 | Loss v 0.001569 | Compact 6.579729 | SPP 0.000000 | Energy 1.219800 | Grad 0.5910 | LR 0.001000
+[2025-12-22 03:20:48,495::train::INFO] [Train] Iter 70000 | Loss 0.311620 | Loss pos 0.238075 | Loss v 0.000419 | Compact 10.550703 | SPP 0.000000 | Energy 0.653757 | Grad 0.4139 | LR 0.001000
+[2025-12-22 03:26:49,328::train::INFO] [Validate] Iter 70000 | Loss 0.799784 | Loss pos 0.718418 | Loss v 0.571091 e-3 | Avg atom auroc 0.945063 | Compact 8.085840 | SPP 0.000000
+[2025-12-22 03:26:49,344::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 03:27:20,057::train::INFO] [Train] Iter 70200 | Loss 0.620423 | Loss pos 0.574750 | Loss v 0.000150 | Compact 10.231695 | SPP 0.000000 | Energy 0.671063 | Grad 1.0035 | LR 0.001000
+[2025-12-22 03:27:50,744::train::INFO] [Train] Iter 70400 | Loss 0.542547 | Loss pos 0.435715 | Loss v 0.000831 | Compact 7.924016 | SPP 0.000000 | Energy 1.206346 | Grad 0.1522 | LR 0.001000
+[2025-12-22 03:28:21,463::train::INFO] [Train] Iter 70600 | Loss 0.930657 | Loss pos 0.803920 | Loss v 0.001050 | Compact 7.238257 | SPP 0.000000 | Energy 1.059806 | Grad 0.5376 | LR 0.001000
+[2025-12-22 03:28:52,391::train::INFO] [Train] Iter 70800 | Loss 1.146330 | Loss pos 1.092133 | Loss v 0.000431 | Compact 3.698221 | SPP 0.000000 | Energy 1.412582 | Grad 0.7271 | LR 0.001000
+[2025-12-22 03:29:23,375::train::INFO] [Train] Iter 71000 | Loss 0.326165 | Loss pos 0.259786 | Loss v 0.000484 | Compact 5.992300 | SPP 0.000000 | Energy 0.667028 | Grad 0.3774 | LR 0.001000
+[2025-12-22 03:29:54,258::train::INFO] [Train] Iter 71200 | Loss 0.657373 | Loss pos 0.617036 | Loss v 0.000201 | Compact 6.734312 | SPP 0.000000 | Energy 1.596482 | Grad 0.8875 | LR 0.001000
+[2025-12-22 03:30:25,123::train::INFO] [Train] Iter 71400 | Loss 0.974299 | Loss pos 0.871688 | Loss v 0.000917 | Compact 3.629394 | SPP 0.000000 | Energy 0.839113 | Grad 1.0056 | LR 0.001000
+[2025-12-22 03:30:56,195::train::INFO] [Train] Iter 71600 | Loss 0.620499 | Loss pos 0.538185 | Loss v 0.000499 | Compact 10.810741 | SPP 0.000000 | Energy 0.988019 | Grad 0.2169 | LR 0.001000
+[2025-12-22 03:31:26,870::train::INFO] [Train] Iter 71800 | Loss 0.403849 | Loss pos 0.323973 | Loss v 0.000658 | Compact 4.694878 | SPP 0.000000 | Energy 0.755986 | Grad 0.6573 | LR 0.001000
+[2025-12-22 03:31:57,813::train::INFO] [Train] Iter 72000 | Loss 0.850952 | Loss pos 0.765305 | Loss v 0.000645 | Compact 7.055816 | SPP 0.000000 | Energy 0.866824 | Grad 0.3695 | LR 0.001000
+[2025-12-22 03:37:49,560::train::INFO] [Validate] Iter 72000 | Loss 0.792049 | Loss pos 0.710752 | Loss v 0.573946 e-3 | Avg atom auroc 0.940515 | Compact 7.967609 | SPP 0.000000
+[2025-12-22 03:37:49,572::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 03:38:19,377::train::INFO] [Train] Iter 72200 | Loss 1.205615 | Loss pos 1.045247 | Loss v 0.001462 | Compact 4.711382 | SPP 0.000000 | Energy 0.757505 | Grad 1.2108 | LR 0.001000
+[2025-12-22 03:38:49,869::train::INFO] [Train] Iter 72400 | Loss 0.729860 | Loss pos 0.613264 | Loss v 0.000904 | Compact 8.742739 | SPP 0.000000 | Energy 0.909874 | Grad 0.4356 | LR 0.001000
+[2025-12-22 03:39:20,773::train::INFO] [Train] Iter 72600 | Loss 1.247858 | Loss pos 1.146778 | Loss v 0.000781 | Compact 7.662028 | SPP 0.000000 | Energy 1.601324 | Grad 0.4659 | LR 0.001000
+[2025-12-22 03:39:51,261::train::INFO] [Train] Iter 72800 | Loss 0.223313 | Loss pos 0.156127 | Loss v 0.000360 | Compact 10.411445 | SPP 0.000000 | Energy 0.887460 | Grad 0.2685 | LR 0.001000
+[2025-12-22 03:40:21,775::train::INFO] [Train] Iter 73000 | Loss 0.927789 | Loss pos 0.848262 | Loss v 0.000547 | Compact 8.282448 | SPP 0.000000 | Energy 1.079841 | Grad 0.9409 | LR 0.001000
+[2025-12-22 03:40:52,295::train::INFO] [Train] Iter 73200 | Loss 0.665154 | Loss pos 0.548445 | Loss v 0.000877 | Compact 9.659973 | SPP 0.000000 | Energy 0.851470 | Grad 0.6256 | LR 0.001000
+[2025-12-22 03:41:22,475::train::INFO] [Train] Iter 73400 | Loss 0.817060 | Loss pos 0.721735 | Loss v 0.000696 | Compact 8.560566 | SPP 0.000000 | Energy 0.720862 | Grad 0.3029 | LR 0.001000
+[2025-12-22 03:41:53,359::train::INFO] [Train] Iter 73600 | Loss 0.910972 | Loss pos 0.825963 | Loss v 0.000693 | Compact 5.252169 | SPP 0.000000 | Energy 1.421277 | Grad 0.7232 | LR 0.001000
+[2025-12-22 03:42:24,106::train::INFO] [Train] Iter 73800 | Loss 0.181742 | Loss pos 0.119871 | Loss v 0.000424 | Compact 6.486100 | SPP 0.000000 | Energy 1.590836 | Grad 0.1713 | LR 0.001000
+[2025-12-22 03:42:55,253::train::INFO] [Train] Iter 74000 | Loss 0.652015 | Loss pos 0.548169 | Loss v 0.000587 | Compact 15.060553 | SPP 0.000000 | Energy 1.057159 | Grad 0.4135 | LR 0.001000
+[2025-12-22 03:48:51,235::train::INFO] [Validate] Iter 74000 | Loss 0.791845 | Loss pos 0.708796 | Loss v 0.586889 e-3 | Avg atom auroc 0.943732 | Compact 8.120114 | SPP 0.000000
+[2025-12-22 03:48:51,251::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 03:49:22,149::train::INFO] [Train] Iter 74200 | Loss 0.695173 | Loss pos 0.592117 | Loss v 0.000812 | Compact 7.272974 | SPP 0.000000 | Energy 0.750997 | Grad 0.8499 | LR 0.001000
+[2025-12-22 03:49:52,919::train::INFO] [Train] Iter 74400 | Loss 0.445628 | Loss pos 0.348761 | Loss v 0.000681 | Compact 9.587381 | SPP 0.000000 | Energy 0.994681 | Grad 0.2200 | LR 0.001000
+[2025-12-22 03:50:23,810::train::INFO] [Train] Iter 74600 | Loss 0.427343 | Loss pos 0.374108 | Loss v 0.000245 | Compact 9.583430 | SPP 0.000000 | Energy 1.165168 | Grad 0.2968 | LR 0.001000
+[2025-12-22 03:50:54,751::train::INFO] [Train] Iter 74800 | Loss 0.673829 | Loss pos 0.598473 | Loss v 0.000524 | Compact 7.658584 | SPP 0.000000 | Energy 1.026004 | Grad 0.7072 | LR 0.001000
+[2025-12-22 03:51:25,614::train::INFO] [Train] Iter 75000 | Loss 0.484898 | Loss pos 0.413583 | Loss v 0.000516 | Compact 6.558804 | SPP 0.000000 | Energy 0.660825 | Grad 0.4809 | LR 0.001000
+[2025-12-22 03:51:56,427::train::INFO] [Train] Iter 75200 | Loss 0.173056 | Loss pos 0.128888 | Loss v 0.000101 | Compact 11.359272 | SPP 0.000000 | Energy 0.868157 | Grad 0.2554 | LR 0.001000
+[2025-12-22 03:52:27,796::train::INFO] [Train] Iter 75400 | Loss 0.763751 | Loss pos 0.703203 | Loss v 0.000494 | Compact 3.722547 | SPP 0.000000 | Energy 0.647581 | Grad 0.4675 | LR 0.001000
+[2025-12-22 03:52:59,298::train::INFO] [Train] Iter 75600 | Loss 1.261556 | Loss pos 1.199519 | Loss v 0.000483 | Compact 4.582249 | SPP 0.000000 | Energy 0.756702 | Grad 0.4225 | LR 0.001000
+[2025-12-22 03:53:31,267::train::INFO] [Train] Iter 75800 | Loss 0.628307 | Loss pos 0.516475 | Loss v 0.000933 | Compact 6.178379 | SPP 0.000000 | Energy 1.110281 | Grad 0.6707 | LR 0.001000
+[2025-12-22 03:54:02,937::train::INFO] [Train] Iter 76000 | Loss 0.543220 | Loss pos 0.467748 | Loss v 0.000549 | Compact 6.868219 | SPP 0.000000 | Energy 0.707082 | Grad 0.3412 | LR 0.001000
+[2025-12-22 03:59:55,787::train::INFO] [Validate] Iter 76000 | Loss 0.788322 | Loss pos 0.706723 | Loss v 0.573390 e-3 | Avg atom auroc 0.944649 | Compact 8.086424 | SPP 0.000000
+[2025-12-22 03:59:55,800::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 04:00:27,160::train::INFO] [Train] Iter 76200 | Loss 0.349395 | Loss pos 0.272940 | Loss v 0.000497 | Compact 8.903667 | SPP 0.000000 | Energy 0.837763 | Grad 0.3564 | LR 0.001000
+[2025-12-22 04:00:57,716::train::INFO] [Train] Iter 76400 | Loss 0.555831 | Loss pos 0.456167 | Loss v 0.000721 | Compact 9.196509 | SPP 0.000000 | Energy 0.728822 | Grad 0.7329 | LR 0.001000
+[2025-12-22 04:01:29,009::train::INFO] [Train] Iter 76600 | Loss 0.198310 | Loss pos 0.121001 | Loss v 0.000371 | Compact 13.414993 | SPP 0.000000 | Energy 0.760464 | Grad 0.3865 | LR 0.001000
+[2025-12-22 04:02:00,218::train::INFO] [Train] Iter 76800 | Loss 0.606170 | Loss pos 0.535554 | Loss v 0.000425 | Compact 9.387234 | SPP 0.000000 | Energy 1.021818 | Grad 0.5070 | LR 0.001000
+[2025-12-22 04:02:31,508::train::INFO] [Train] Iter 77000 | Loss 0.758022 | Loss pos 0.709866 | Loss v 0.000400 | Compact 2.729314 | SPP 0.000000 | Energy 0.585643 | Grad 0.5497 | LR 0.001000
+[2025-12-22 04:03:02,926::train::INFO] [Train] Iter 77200 | Loss 0.459723 | Loss pos 0.381446 | Loss v 0.000377 | Compact 13.522379 | SPP 0.000000 | Energy 1.334611 | Grad 0.1272 | LR 0.001000
+[2025-12-22 04:03:34,207::train::INFO] [Train] Iter 77400 | Loss 0.807352 | Loss pos 0.747272 | Loss v 0.000358 | Compact 8.090127 | SPP 0.000000 | Energy 0.850396 | Grad 0.2860 | LR 0.001000
+[2025-12-22 04:04:05,503::train::INFO] [Train] Iter 77600 | Loss 0.892148 | Loss pos 0.834629 | Loss v 0.000329 | Compact 8.218953 | SPP 0.000000 | Energy 1.030333 | Grad 0.5039 | LR 0.001000
+[2025-12-22 04:04:36,481::train::INFO] [Train] Iter 77800 | Loss 0.711009 | Loss pos 0.646076 | Loss v 0.000076 | Compact 19.126196 | SPP 0.000000 | Energy 0.966282 | Grad 0.1819 | LR 0.001000
+[2025-12-22 04:05:07,484::train::INFO] [Train] Iter 78000 | Loss 0.625347 | Loss pos 0.483646 | Loss v 0.000916 | Compact 16.684402 | SPP 0.000000 | Energy 1.034980 | Grad 0.2715 | LR 0.001000
+[2025-12-22 04:11:02,990::train::INFO] [Validate] Iter 78000 | Loss 0.793756 | Loss pos 0.713406 | Loss v 0.561336 e-3 | Avg atom auroc 0.945793 | Compact 8.072289 | SPP 0.000000
+[2025-12-22 04:11:03,006::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 04:11:34,497::train::INFO] [Train] Iter 78200 | Loss 0.531955 | Loss pos 0.439525 | Loss v 0.000824 | Compact 3.359116 | SPP 0.000000 | Energy 0.626578 | Grad 0.2884 | LR 0.001000
+[2025-12-22 04:12:05,753::train::INFO] [Train] Iter 78400 | Loss 0.575256 | Loss pos 0.481114 | Loss v 0.000828 | Compact 3.788391 | SPP 0.000000 | Energy 0.594828 | Grad 0.3618 | LR 0.001000
+[2025-12-22 04:12:37,082::train::INFO] [Train] Iter 78600 | Loss 1.041275 | Loss pos 0.947575 | Loss v 0.000737 | Compact 6.657141 | SPP 0.000000 | Energy 0.661612 | Grad 0.6230 | LR 0.001000
+[2025-12-22 04:13:08,033::train::INFO] [Train] Iter 78800 | Loss 0.443180 | Loss pos 0.385263 | Loss v 0.000382 | Compact 6.578567 | SPP 0.000000 | Energy 0.613428 | Grad 0.2978 | LR 0.001000
+[2025-12-22 04:13:39,543::train::INFO] [Train] Iter 79000 | Loss 0.464876 | Loss pos 0.370560 | Loss v 0.000717 | Compact 7.536678 | SPP 0.000000 | Energy 0.893580 | Grad 0.3756 | LR 0.001000
+[2025-12-22 04:14:11,566::train::INFO] [Train] Iter 79200 | Loss 0.752153 | Loss pos 0.660870 | Loss v 0.000659 | Compact 8.463478 | SPP 0.000000 | Energy 2.670044 | Grad 0.5491 | LR 0.001000
+[2025-12-22 04:14:42,974::train::INFO] [Train] Iter 79400 | Loss 0.462651 | Loss pos 0.358417 | Loss v 0.000848 | Compact 6.493908 | SPP 0.000000 | Energy 0.721721 | Grad 0.8057 | LR 0.001000
+[2025-12-22 04:15:14,384::train::INFO] [Train] Iter 79600 | Loss 1.707335 | Loss pos 1.654417 | Loss v 0.000206 | Compact 10.756428 | SPP 0.000000 | Energy 1.897722 | Grad 0.9689 | LR 0.001000
+[2025-12-22 04:15:45,811::train::INFO] [Train] Iter 79800 | Loss 0.803394 | Loss pos 0.715485 | Loss v 0.000678 | Compact 6.686715 | SPP 0.000000 | Energy 1.166790 | Grad 0.6858 | LR 0.001000
+[2025-12-22 04:16:16,594::train::INFO] [Train] Iter 80000 | Loss 0.424737 | Loss pos 0.323298 | Loss v 0.000608 | Compact 13.558895 | SPP 0.000000 | Energy 0.983353 | Grad 0.2615 | LR 0.001000
+[2025-12-22 04:22:12,128::train::INFO] [Validate] Iter 80000 | Loss 0.791089 | Loss pos 0.709909 | Loss v 0.570172 e-3 | Avg atom auroc 0.946661 | Compact 8.054117 | SPP 0.000000
+[2025-12-22 04:22:12,144::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 04:22:43,386::train::INFO] [Train] Iter 80200 | Loss 0.952107 | Loss pos 0.869714 | Loss v 0.000621 | Compact 6.775332 | SPP 0.000000 | Energy 0.977650 | Grad 0.4439 | LR 0.001000
+[2025-12-22 04:23:14,357::train::INFO] [Train] Iter 80400 | Loss 1.363216 | Loss pos 1.261128 | Loss v 0.000839 | Compact 6.076627 | SPP 0.000000 | Energy 1.109820 | Grad 0.4025 | LR 0.001000
+[2025-12-22 04:23:45,474::train::INFO] [Train] Iter 80600 | Loss 0.309948 | Loss pos 0.188772 | Loss v 0.000903 | Compact 10.283149 | SPP 0.000000 | Energy 0.834272 | Grad 0.3169 | LR 0.001000
+[2025-12-22 04:24:17,056::train::INFO] [Train] Iter 80800 | Loss 0.910252 | Loss pos 0.770573 | Loss v 0.001332 | Compact 2.164736 | SPP 0.000000 | Energy 0.538513 | Grad 0.8265 | LR 0.001000
+[2025-12-22 04:24:48,280::train::INFO] [Train] Iter 81000 | Loss 0.474646 | Loss pos 0.348410 | Loss v 0.000825 | Compact 14.575521 | SPP 0.000000 | Energy 1.580166 | Grad 0.3382 | LR 0.001000
+[2025-12-22 04:25:19,782::train::INFO] [Train] Iter 81200 | Loss 0.251387 | Loss pos 0.186591 | Loss v 0.000439 | Compact 6.971624 | SPP 0.000000 | Energy 1.494453 | Grad 0.3102 | LR 0.001000
+[2025-12-22 04:25:50,887::train::INFO] [Train] Iter 81400 | Loss 0.763211 | Loss pos 0.641538 | Loss v 0.000998 | Compact 7.303305 | SPP 0.000000 | Energy 0.966763 | Grad 0.5143 | LR 0.001000
+[2025-12-22 04:26:22,397::train::INFO] [Train] Iter 81600 | Loss 0.323331 | Loss pos 0.240508 | Loss v 0.000591 | Compact 7.913793 | SPP 0.000000 | Energy 0.842916 | Grad 0.3517 | LR 0.001000
+[2025-12-22 04:26:53,438::train::INFO] [Train] Iter 81800 | Loss 1.143720 | Loss pos 1.076133 | Loss v 0.000440 | Compact 7.852509 | SPP 0.000000 | Energy 0.670226 | Grad 0.7326 | LR 0.001000
+[2025-12-22 04:27:24,070::train::INFO] [Train] Iter 82000 | Loss 0.453329 | Loss pos 0.246376 | Loss v 0.001928 | Compact 4.728917 | SPP 0.000000 | Energy 0.597893 | Grad 1.0266 | LR 0.001000
+[2025-12-22 04:33:21,976::train::INFO] [Validate] Iter 82000 | Loss 0.795199 | Loss pos 0.716184 | Loss v 0.548685 e-3 | Avg atom auroc 0.945981 | Compact 8.048905 | SPP 0.000000
+[2025-12-22 04:33:21,990::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 04:33:53,269::train::INFO] [Train] Iter 82200 | Loss 0.774047 | Loss pos 0.644506 | Loss v 0.001147 | Compact 4.936320 | SPP 0.000000 | Energy 0.756813 | Grad 0.3401 | LR 0.001000
+[2025-12-22 04:34:24,715::train::INFO] [Train] Iter 82400 | Loss 0.235831 | Loss pos 0.165275 | Loss v 0.000423 | Compact 9.417347 | SPP 0.000000 | Energy 0.777261 | Grad 0.3539 | LR 0.001000
+[2025-12-22 04:34:55,528::train::INFO] [Train] Iter 82600 | Loss 0.685876 | Loss pos 0.555164 | Loss v 0.001137 | Compact 5.664137 | SPP 0.000000 | Energy 0.758073 | Grad 0.4591 | LR 0.001000
+[2025-12-22 04:35:26,470::train::INFO] [Train] Iter 82800 | Loss 0.626467 | Loss pos 0.510647 | Loss v 0.000960 | Compact 6.611008 | SPP 0.000000 | Energy 1.049944 | Grad 0.6320 | LR 0.001000
+[2025-12-22 04:35:57,394::train::INFO] [Train] Iter 83000 | Loss 0.684227 | Loss pos 0.541513 | Loss v 0.001145 | Compact 9.414872 | SPP 0.000000 | Energy 0.779149 | Grad 0.3729 | LR 0.001000
+[2025-12-22 04:36:28,344::train::INFO] [Train] Iter 83200 | Loss 0.946875 | Loss pos 0.851067 | Loss v 0.000696 | Compact 8.727139 | SPP 0.000000 | Energy 0.920556 | Grad 0.2481 | LR 0.001000
+[2025-12-22 04:36:59,618::train::INFO] [Train] Iter 83400 | Loss 0.249146 | Loss pos 0.163760 | Loss v 0.000535 | Compact 10.634952 | SPP 0.000000 | Energy 0.932893 | Grad 0.1832 | LR 0.001000
+[2025-12-22 04:37:30,576::train::INFO] [Train] Iter 83600 | Loss 0.229387 | Loss pos 0.161894 | Loss v 0.000269 | Compact 13.542360 | SPP 0.000000 | Energy 1.076209 | Grad 0.1855 | LR 0.001000
+[2025-12-22 04:38:01,914::train::INFO] [Train] Iter 83800 | Loss 0.937893 | Loss pos 0.863526 | Loss v 0.000562 | Compact 6.048970 | SPP 0.000000 | Energy 0.815162 | Grad 1.1957 | LR 0.001000
+[2025-12-22 04:38:33,009::train::INFO] [Train] Iter 84000 | Loss 0.315551 | Loss pos 0.252230 | Loss v 0.000354 | Compact 9.317190 | SPP 0.000000 | Energy 1.121927 | Grad 0.3532 | LR 0.001000
+[2025-12-22 04:44:28,284::train::INFO] [Validate] Iter 84000 | Loss 0.783507 | Loss pos 0.704108 | Loss v 0.553723 e-3 | Avg atom auroc 0.945593 | Compact 8.009142 | SPP 0.000000
+[2025-12-22 04:44:28,299::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 04:44:59,480::train::INFO] [Train] Iter 84200 | Loss 0.262955 | Loss pos 0.214600 | Loss v 0.000224 | Compact 8.656624 | SPP 0.000000 | Energy 0.828263 | Grad 0.3304 | LR 0.001000
+[2025-12-22 04:45:30,340::train::INFO] [Train] Iter 84400 | Loss 0.992276 | Loss pos 0.909368 | Loss v 0.000705 | Compact 4.152431 | SPP 0.000000 | Energy 0.650475 | Grad 0.6258 | LR 0.001000
+[2025-12-22 04:46:01,130::train::INFO] [Train] Iter 84600 | Loss 0.762286 | Loss pos 0.653310 | Loss v 0.000780 | Compact 10.339588 | SPP 0.000000 | Energy 1.024735 | Grad 0.4516 | LR 0.001000
+[2025-12-22 04:46:32,188::train::INFO] [Train] Iter 84800 | Loss 0.159510 | Loss pos 0.079673 | Loss v 0.000515 | Compact 9.457302 | SPP 0.000000 | Energy 0.884886 | Grad 0.2043 | LR 0.001000
+[2025-12-22 04:47:02,798::train::INFO] [Train] Iter 85000 | Loss 1.577642 | Loss pos 1.513654 | Loss v 0.000544 | Compact 3.199213 | SPP 0.000000 | Energy 1.214317 | Grad 1.2663 | LR 0.001000
+[2025-12-22 04:47:33,696::train::INFO] [Train] Iter 85200 | Loss 1.092836 | Loss pos 0.909062 | Loss v 0.001688 | Compact 4.995708 | SPP 0.000000 | Energy 0.805133 | Grad 0.8860 | LR 0.001000
+[2025-12-22 04:48:04,670::train::INFO] [Train] Iter 85400 | Loss 0.430928 | Loss pos 0.354577 | Loss v 0.000690 | Compact 2.443157 | SPP 0.000000 | Energy 0.529825 | Grad 0.2409 | LR 0.001000
+[2025-12-22 04:48:36,259::train::INFO] [Train] Iter 85600 | Loss 0.465914 | Loss pos 0.393158 | Loss v 0.000609 | Compact 3.966731 | SPP 0.000000 | Energy 0.896227 | Grad 0.3084 | LR 0.001000
+[2025-12-22 04:49:07,619::train::INFO] [Train] Iter 85800 | Loss 0.583536 | Loss pos 0.529775 | Loss v 0.000336 | Compact 6.712316 | SPP 0.000000 | Energy 1.049160 | Grad 0.3411 | LR 0.001000
+[2025-12-22 04:49:38,923::train::INFO] [Train] Iter 86000 | Loss 0.193617 | Loss pos 0.118738 | Loss v 0.000565 | Compact 6.139787 | SPP 0.000000 | Energy 0.668604 | Grad 0.3763 | LR 0.001000
+[2025-12-22 04:55:32,028::train::INFO] [Validate] Iter 86000 | Loss 0.781787 | Loss pos 0.702781 | Loss v 0.550454 e-3 | Avg atom auroc 0.944923 | Compact 7.986999 | SPP 0.000000
+[2025-12-22 04:55:32,041::train::INFO] [Validate] Best val loss achieved: N/A (val_loss is None)
+[2025-12-22 04:56:03,275::train::INFO] [Train] Iter 86200 | Loss 1.102239 | Loss pos 1.028895 | Loss v 0.000466 | Compact 8.913584 | SPP 0.000000 | Energy 1.079022 | Grad 0.6088 | LR 0.001000
+[2025-12-22 04:56:34,164::train::INFO] [Train] Iter 86400 | Loss 1.310168 | Loss pos 1.237970 | Loss v 0.000641 | Compact 2.690740 | SPP 0.000000 | Energy 0.872272 | Grad 1.6598 | LR 0.001000
+[2025-12-22 04:57:05,373::train::INFO] [Train] Iter 86600 | Loss 0.769169 | Loss pos 0.665717 | Loss v 0.000688 | Compact 11.566301 | SPP 0.000000 | Energy 1.326838 | Grad 0.2602 | LR 0.001000
+[2025-12-22 04:57:36,290::train::INFO] [Train] Iter 86800 | Loss 0.695837 | Loss pos 0.614281 | Loss v 0.000381 | Compact 14.497395 | SPP 0.000000 | Energy 1.147919 | Grad 0.4162 | LR 0.001000
+[2025-12-22 04:58:07,248::train::INFO] [Train] Iter 87000 | Loss 0.354895 | Loss pos 0.278247 | Loss v 0.000267 | Compact 16.654133 | SPP 0.000000 | Energy 1.055809 | Grad 0.1777 | LR 0.001000
+[2025-12-22 04:58:38,388::train::INFO] [Train] Iter 87200 | Loss 1.329062 | Loss pos 1.237264 | Loss v 0.000790 | Compact 4.270103 | SPP 0.000000 | Energy 0.831940 | Grad 0.6910 | LR 0.001000
+[2025-12-22 04:59:09,280::train::INFO] [Train] Iter 87400 | Loss 1.023445 | Loss pos 0.940703 | Loss v 0.000744 | Compact 2.770426 | SPP 0.000000 | Energy 0.863678 | Grad 0.5777 | LR 0.001000
+[2025-12-22 04:59:40,253::train::INFO] [Train] Iter 87600 | Loss 1.169612 | Loss pos 1.117979 | Loss v 0.000287 | Compact 7.635001 | SPP 0.000000 | Energy 1.165825 | Grad 0.7840 | LR 0.001000
+[2025-12-22 05:00:11,175::train::INFO] [Train] Iter 87800 | Loss 0.563091 | Loss pos 0.458522 | Loss v 0.000774 | Compact 9.057104 | SPP 0.000000 | Energy 0.899198 | Grad 0.3558 | LR 0.001000
+[2025-12-22 05:00:42,181::train::INFO] [Train] Iter 88000 | Loss 0.367571 | Loss pos 0.293821 | Loss v 0.000429 | Compact 10.267500 | SPP 0.000000 | Energy 0.933873 | Grad 0.3125 | LR 0.001000

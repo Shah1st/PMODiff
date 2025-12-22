@@ -1,1 +1,4 @@
 data/**
+logs_diffusion/tuning_c003_2025_12_21__21_01_21/checkpoints/**
+logs_diffusion/tuning_c01_2025_12_21__21_04_04/checkpoints/**
+logs_diffusion/tuning_c03_2025_12_21__21_04_21/checkpoints/**
